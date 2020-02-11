@@ -5,9 +5,9 @@ TODO ЗАДАЧИ:
   * 1) Массив уникальных объектов (удаления дубликатов)
   * 2) Проверка на существование свойств в объекте
   * 3) Из двух массивов собрать, один массив объектов
-  * 4)
-  * 5)
-  * 6)
+  * 4) Вывести односвязный СПИСОК
+  * 5) Функция для получения целевого значение во вложенном объекте
+  * 6) Выборка по комментариям пользователей
   * 7)
 */
 
@@ -133,6 +133,7 @@ TODO ЗАДАЧИ:
     //  [ { a: 'x' }, { a: 'z' } ]
   })();
 
+  // !2
   (function() {
     console.log('%c 2) ПРОВЕРКА НА СУЩЕСТВОВАНИЕ СВОЙСТВ В ОБЪЕКТЕ', consoleLogStyles);
 
@@ -182,6 +183,7 @@ TODO ЗАДАЧИ:
     console.log(getPropFixed(hero, 'isVillian', true));
   })();
 
+  // !3
   (function() {
     console.log('%c 3) ИЗ ДВУХ МАССИВОВ СОБРАТЬ, ОДИН МАССИВ ОБЪЕКТОВ', consoleLogStyles);
 
@@ -253,5 +255,178 @@ TODO ЗАДАЧИ:
       }
     ]
   */
+  })();
+
+  // ! 4
+  (function() {
+    console.log('%c 4) ВЫВЕСТИ ОДНОСВЯЗНЫЙ СПИСОК', consoleLogStyles);
+
+    /*
+        Напишите функцию printList(list)
+     * Задачи:
+     * 1.Выводит элементы списка по очереди, при помощи цикла.
+     * 2.Выводит элементы списка в обратном порядке, при помощи цикла.
+     * 3.Выводит элементы списка по очереди, при помощи рекурсии.
+     * 4.Выводит элементы списка в обратном порядке, при помощи рекурсии.
+        Для списка выше 5.она должна выводить 4,3,2,1
+     */
+
+    const list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null,
+          },
+        },
+      },
+    };
+
+    // # Задача 1 (выводит элементы списка по очереди, при помощи цикла)
+    const printList = list => {
+      // Массив элементов списка по очереди
+      const arr = [];
+
+      let tmp = list;
+      while (tmp) {
+        arr.push(tmp.value);
+        tmp = tmp.next;
+      }
+      return arr;
+    };
+    console.log(`При помощи цикла`, printList(list)); //  [ 1, 2, 3, 4 ]
+
+    // # Задача 2 (в обратном порядке) Циклом
+    const printReverseList2 = list => {
+      const arr = [];
+      // const arrReverse = [];
+      let tmp = list;
+
+      while (tmp) {
+        arr.push(tmp.value);
+        tmp = tmp.next;
+      }
+
+      return arr.reverse();
+    };
+    console.log(`При помощи цикла (в обратном порядке)`, printReverseList2(list)); //  [ 4, 3, 2, 1 ]
+
+    // # Задача 3 Рекурсивный вариант
+    const arr = [];
+    const printList2 = list => {
+      arr.push(list.value);
+
+      if (list.next) {
+        printList2(list.next);
+      }
+
+      return arr;
+    };
+    console.log(`Рекурсивный вариант`, printList2(list)); //  [ 1, 2, 3, 4 ]
+
+    // # Задача 4 (в обратном порядке) Рекурсивный вариант
+    const arr2 = [];
+    const printReverseList = list => {
+      if (list.next) {
+        printReverseList(list.next);
+      }
+      arr2.push(list.value);
+
+      return arr2;
+    };
+    console.log(`Рекурсивный вариант (в обратном порядке)`, printReverseList(list));
+    // [ 4, 3, 2, 1 ]
+  })();
+
+  // !5
+  (function() {
+    console.log('%c 5) ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ЦЕЛЕВОГО ЗНАЧЕНИЕ ВО ВЛОЖЕННОМ ОБЪЕКТЕ', consoleLogStyles);
+
+    // !Как вернуть целевое значение во вложенном объекте JSON на основе заданного ключа.
+
+    const data = {
+      level1: {
+        level2: {
+          level3: 'some data',
+        },
+      },
+    };
+
+    const dig = (obj, target) =>
+      target in obj
+        ? obj[target]
+        : Object.values(obj).reduce((acc, val) => {
+            if (acc !== undefined) return acc;
+            if (typeof val === 'object') return dig(val, target);
+          }, undefined);
+
+    console.log('Целевое значение во вложенном объекте', dig(data, 'level3'));
+  })();
+
+  // !6
+  (function() {
+    console.log('%c 6) ВЫБОРКА ПО КОММЕНТАРИЯМ ПОЛЬЗОВАТЕЛЕЙ', consoleLogStyles);
+
+    const comments = [
+      {
+        id: `#com1`,
+        author: { id: `aut1`, name: `John Doe` },
+        text: `Cool!`,
+        postId: `#post1`,
+      },
+      {
+        id: `#com2`,
+        author: { id: `aut1`, name: `John Doe` },
+        text: `Cool!`,
+        postId: `#post2`,
+      },
+      {
+        id: `#com3`,
+        author: { id: `aut2`, name: `Anthony Hopkins` },
+        text: `Nice comment, John! :)`,
+        postId: `#post1`,
+      },
+      {
+        id: `#com4`,
+        author: { id: `aut1`, name: `John Doe` },
+        text: `Thanks!`,
+        postId: `#post1`,
+      },
+    ];
+
+    // # Выборка всех сообщений `#post1`
+    const getTextCOmments = arr =>
+      arr.filter(comment => comment.postId === `#post1`).map(comment => comment.text);
+
+    console.log(`Выборка всех сообщений #post1$`, getTextCOmments(comments));
+    //  [ 'Cool!', 'Nice comment, John! :)', 'Thanks!' ]
+
+    // # Выборка только разных авторов, без повторений + Найти имена Авторов
+    const getAutorIdCommnets = arr =>
+      arr
+        .map(comment => comment.author)
+        .filter(
+          (author, index, currentList) => currentList.findIndex(item => item.id === author.id) === index
+          //  [ { id: 'aut1', name: 'John Doe' }, { id: 'aut2', name: 'Anthony Hopkins' } ]
+        )
+        .map(author => author.name);
+
+    console.log(
+      `Выборка только разных авторов, без повторений + Найти имена Авторов`,
+      getAutorIdCommnets(comments)
+    );
+    //  [ { id: 'aut1', name: 'John Doe' }, { id: 'aut2', name: 'Anthony Hopkins' } ]
+
+    // # Сколько всего было оставлено комментарий Авторами
+    const getCounterComments = arr =>
+      arr.reduce((acc, item) => {
+        return { ...acc, [item.author.id]: (acc[item.author.id] || 0) + 1 };
+      }, {});
+
+    console.log(`Сколько всего было оставлено комментарий Авторами`, getCounterComments(comments));
+    // { aut1: 3, aut2: 1 }
   })();
 })();
