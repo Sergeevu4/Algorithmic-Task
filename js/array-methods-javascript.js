@@ -449,7 +449,7 @@ TODO ЗАДАЧИ:
       ${isAnagram(myOne, myTwo)}`); // true
 
     // # Способ №2 Учитывает русский и английский алфавит
-    // # Через регулярное выражения удаляет любые знаки и цифры
+    // Через регулярное выражения удаляет любые знаки и цифры
     const isAnagram2 = (str1, str2) => {
       const normalize = str =>
         str
@@ -488,6 +488,39 @@ TODO ЗАДАЧИ:
     }
 
     // console.log(areAnagrams("hello", 'olleh')) // true
+
+    // # №4 Решения через Object
+    function buildCharObject(str) {
+      const charObj = {};
+      const clean = str.toLowerCase().replace(/[^a-z-а-я]/, '');
+
+      for (const char of clean) {
+        charObj[char] = (charObj[char] || 0) + 1;
+      }
+
+      return charObj;
+    }
+
+    function anagram(strA, strB) {
+      const aCharObj = buildCharObject(strA);
+      const bCharObj = buildCharObject(strB);
+
+      console.log(Object.keys(aCharObj));
+
+      if (Object.keys(aCharObj).length !== Object.keys(bCharObj).length) {
+        return false;
+      }
+
+      for (const char in aCharObj) {
+        if (aCharObj[char] !== bCharObj[char]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // console.log(anagram("hello world", "world hello"));
   })();
 
   // ! 6
@@ -566,6 +599,7 @@ TODO ЗАДАЧИ:
      * алгоритма блочной сортировки.
      */
 
+    // # Через Object
     const aclean3 = arr => {
       const map = arr.reduce((acc, str) => {
         // сгруппируем анаграммы в хеш-таблице
@@ -595,9 +629,51 @@ TODO ЗАДАЧИ:
       }, []);
 
       //  [ 'воз', 'ЗОВ', 'киборг', 'гробик', 'корсет', 'костер', 'сектор' ]
+
+      // ! ЕСЛИ НУЖНА ГРУППИРОВКА ЭЛЕМЕНТОВ
+      // return Object.keys(map).reduce((acc, key) => {
+      //   return map[key].length > 1 ? acc.concat([map[key]]) : acc;
+      // }, []);
+
+      //  [ [ 'воз', 'ЗОВ' ],[ 'киборг', 'гробик' ],[ 'корсет', 'костер', 'сектор' ] ]
     };
 
     console.log(aclean3(arrAnagram));
+
+    // # Через структуру данных MAP
+    function anagramsGroup(arr) {
+      // Очищаю строку от знаков кроме букв, привожу к нижнему регистру и сортирую
+      const sort = str =>
+        str
+          .toLowerCase()
+          .replace(/[^a-z-а-я]/g, '')
+          .split('')
+          .sort()
+          .join('');
+
+      // структура данных для хранения массивов с анаграммами
+      const map = new Map();
+
+      arr.forEach(item => {
+        // Имя ключа в map
+        const itemSorted = sort(item);
+
+        // Если ключа нет
+        if (!map.has(itemSorted)) {
+          // Записываю его по ключу в массив с одним элементом
+          map.set(itemSorted, [item]);
+        } else {
+          // Если по ключи есть еще один элемент добавляю его в массив
+          map.get(itemSorted).push(item);
+        }
+      });
+
+      // Преобразовываю Map c ключами в виде массивов в новый основной массив
+      // Фильтрую больше одно для того, чтобы выбрать только те элементы у которых есть анаграммы
+      return Array.from(map.values()).filter(item => item.length > 1);
+    }
+
+    console.log(anagramsGroup(['стол', 'барокко', 'слот', 'кот', 'кошка', 'ток', 'коробка']));
   })();
 
   // ! 8
