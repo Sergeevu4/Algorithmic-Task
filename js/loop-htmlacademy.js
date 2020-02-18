@@ -276,7 +276,7 @@ TODO ЗАДАЧИ:
       * Учитывая эту особенность, нам нужно просто посчитать, что в слове не более одной не парной буквы
     */
 
-    function isPalindrome2(str) {
+    function getPalindrome(str) {
       const unmatched = new Set();
 
       str.split('').forEach(letter => {
@@ -291,7 +291,52 @@ TODO ЗАДАЧИ:
       return unmatched.size <= 1;
     }
 
-    console.log(isPalindrome2('civic')); // true
+    console.log(getPalindrome('civic')); // true
+
+    function isPalindromeFun(str) {
+      // Очищаем строку от знаков препинания и продим к нижнему регистру
+      const clearStr = s => s.toLowerCase().replace(/[^а-я-a-z-0-9]/gi, '');
+      return (
+        clearStr(str) ===
+        clearStr(str)
+          .split('')
+          .reverse()
+          .join('')
+      );
+    }
+
+    // console.log(isPalindromeFun('Яд, яд, дядя!'));
+
+    // # Через цикл For (Более оптимальное решение)
+    function isPalindrome2(str) {
+      const clear = str.toLowerCase().replace(/[^а-я-a-z-0-9]/gi, '');
+      for (let i = 0; i < clear.length; i++) {
+        const letterBack = clear[clear.length - (i + 1)];
+        if (clear[i] !== letterBack) return false;
+      }
+      return true;
+    }
+
+    // console.log(isPalindrome2('Сани, плот и воз, зов и толп и нас.'));
+    // console.log(isPalindrome2('Сани, плот и воз, зов и толп и нас.'));
+
+    // # Через цикл While (Более оптимальное решение)
+    function isPalindrome3(str) {
+      const clear = str.toLowerCase().replace(/\s/g, '');
+
+      let left = 0;
+      let right = clear.length - 1;
+
+      while (left < right) {
+        if (clear[left] !== clear[right]) return false;
+        left++;
+        right--;
+      }
+
+      return true;
+    }
+
+    // console.log(isPalindrome3('Сани плот и воз зов и толп и нас'));
   })();
 
   // ! 8
