@@ -1,5 +1,5 @@
   # Решение разнообразных задач
-    Для подсветки комметариев необходимо использовать [плагин](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments Better Comments) для VS CODE
+  Для подсветки комметариев необходимо использовать [плагин](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments "Better Comments") для VS CODE
 
 
   ## info.js
