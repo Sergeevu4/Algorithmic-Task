@@ -1,8 +1,9 @@
-  # Решение разнообразных задач
-  Для подсветки комментариев необходимо использовать [плагин](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments "Better Comments") для VS CODE
+# Решение разнообразных задач на JavaScript
 
+Для подсветки комментариев необходимо использовать [плагин](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments 'Better Comments') для VS CODE
 
-  ## info.js
+## [info.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/info.js)
+
     1. Проверка является ли массивом
     2. Способ создать массив необходимых длины из значений 0 до N
     3. Создать массива рандомных чисел
@@ -23,7 +24,8 @@
     18. Сортировка пузырьком
     19. Бинарный (Двоичный) поиск
 
-  ## array-htmlacademy.js
+## [array-htmlacademy.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/array-htmlacademy.js)
+
     1. Функция удаляющая элементы из массива
     2. Найти последний индекс элемента в массиве
     3. На основе одного массива создать другой (багаж)
@@ -40,7 +42,8 @@
     14. Найти количество элементов массива, которые в сумме не превышают Limit
     15. Найти совпадающие значения в двух массивах
 
-  ## array-string.js
+## [array-string.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/array-string.js)
+
     1. Object.prototype: Проверка является ли массив массивом
     2. Spread: Быстрый способ вывести значение массива - строкой
     3. FOR...OF: Вывести индекс элементов
@@ -51,7 +54,8 @@
     8. Слово или текст с Заглавной буквы
     9. Сколько букв в слове
 
-  ## loop-htmlacademy.js
+## [loop-htmlacademy.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/loop-htmlacademy.js)
+
     1. Геометрическая прогрессия
     2. Сумма чисел - последовательности
     3. Произведение четных чисел - последовательности
@@ -61,7 +65,8 @@
     7. Палиндром
     8. Перевернуть строку задом на перед
 
-  ## reduce.js
+## [reduce.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/reduce.js)
+
     1. Массив в обратном порядке
     2. Сколько раз встречается в массиве или в строке
     3. Вычислить общую стоимость товаров и выставить покупателю счёт
@@ -82,7 +87,8 @@
     18. Посчитать среднее из массива чисел
     19. Среднего значения оценки популярности
 
-  ## function-htmlacademy.js
+## [function-htmlacademy.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/function-htmlacademy.js)
+
     1. Ежемесячные затраты компании на сотрудника
     2. Массив с подходящими датами, в зависимости от суммы чисел (с 2018 по 2045)
     3. Определять день недели по числу
@@ -96,7 +102,8 @@
     11. Вычисление двойного Факторила
     12. Вычисление Факторила
 
-  ## recursion.js
+## [recursion.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/recursion.js)
+
     1. Сумма чисел в массив
     2. Факториал
     3. Числа фибоначчи
@@ -108,7 +115,8 @@
     9. Задача №5 новый массив из k повторов
     10. Задача №6 вернуть первую самую длинную строку
 
-  ## array-methods-javascript.js
+## [array-methods-javascript.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/array-methods-javascript.js)
+
     1. Добавить класс в строку, но только если его там еще нет
     2. Удалять класс в строке, но только если он там есть
     3. Перевести текст вида border-left-width в borderLeftWidth
@@ -120,7 +128,8 @@
     9. Найти повторяющийся элементы в массиве и полностью их удалить
     10. В массиве парных положительных чисел найти непарное число
 
-  ## class.js
+## [class.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/class.js)
+
     1. Class + Arguments или Rest
     2. ES6 Создание Класса и Подкласса
     3. ES5 Создание Класса и Подкласса
@@ -134,7 +143,8 @@
     11. EventEmittet - на замыкании
     12. EventEmittet объект + взаимодействие в классах
 
-  ## destruction-object.js
+## [destruction-object.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/destruction-object.js)
+
     1. Исключение свойств из Объекта через Деструктуризацию
     2. Изменение порядка свойств в Объекте
     3. Свойства по умолчанию
@@ -148,7 +158,8 @@
     11. В зависимости от True или False будет записан один или другой объект
     12. В зависимости от True или False значение в массив
 
-  ## object.js
+## [object.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/object.js)
+
     1. Массив уникальных объектов (удаления дубликатов)
     2. Проверка на существование свойств в объекте
     3. Из двух массивов собрать, один массив объектов
@@ -157,7 +168,8 @@
     6. Функция для получения целевого значение во вложенном объекте
     7. Выборка по комментариям пользователей
 
-  ## functional-programming.js
+## [functional-programming.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/functional-programming.js)
+
     1. Чистые функции (Функциональный стиль)
     2. Каррирование
     3. Композиция
@@ -165,7 +177,8 @@
     5. Создать тикающие часы: Императивное решение
     6. Создать тикающие часы: Декларативное решение
 
-  ## task.js
+## [task.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/task.js)
+
     1. Определились 8 четвертьфиналистов Лиги чемпионов
     2. Любовный треугольник
     3. Ханойская башня
@@ -184,7 +197,8 @@
     16. Яндекс: Проверка массива на монотоность
     17. Жадный Алгоритм: Нахождения оптимального заправки от точки А до точки Б
 
-  ## reg-exp-javascript.js
+## [reg-exp-javascript.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/reg-exp-javascript.js)
+
     1. Метод match у строк
     2. Метод exec у регулярных выражений (RegExp)
     3. Поиск времени в строке: Завтрак в 09:00
@@ -206,4 +220,3 @@
     3.  Найдите, все языки программирования которые находятся в строке
     4.  Найдите тег style, кроме <styler>
     5.  Удалить последнюю запятую в строке
-
