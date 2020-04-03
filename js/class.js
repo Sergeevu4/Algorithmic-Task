@@ -465,7 +465,7 @@ TODO ЗАДАЧИ:
 
       inspect() {
         return `У персонажа "${this.name}" найдено:
-            ${[...this.bag].map((it) => it.name).join(`, `)}`;
+            ${[...this.bag].map(it => it.name).join(`, `)}`;
       }
     }
 
@@ -615,13 +615,13 @@ TODO ЗАДАЧИ:
     // Метод для отправки событий
     EventEmittet.prototype.emit = function(name, ...data) {
       const event = this.events[name];
-      if (event) event.forEach((fn) => fn(...data));
+      if (event) event.forEach(fn => fn(...data));
     };
 
     // Экземпляр EventEmittet
     const ee = new EventEmittet();
 
-    ee.on('event1', (data) => {
+    ee.on('event1', data => {
       console.log(data); // { a: 5 }
     });
 
@@ -657,14 +657,14 @@ TODO ЗАДАЧИ:
         },
         emit: (name, ...data) => {
           const event = events[name];
-          if (event) event.forEach((fn) => fn(...data));
+          if (event) event.forEach(fn => fn(...data));
         },
       };
     };
 
     const eventE = emitter();
 
-    eventE.on('event1', (data) => {
+    eventE.on('event1', data => {
       console.log(data); //  { a: 1 } { a: 2 }
     });
 
@@ -676,12 +676,12 @@ TODO ЗАДАЧИ:
     // EventEmittet - на замыкании + Рефакторинг в Функциональном стиле
     const emitter2 = (events = {}) => ({
       on: (name, fn) => (events[name] = events[name] || []).push(fn),
-      emit: (name, ...data) => (event[name] || []).forEach((fn) => fn(...data)),
+      emit: (name, ...data) => (event[name] || []).forEach(fn => fn(...data)),
     });
 
     const eventE2 = emitter();
 
-    eventE2.on('event1', (data) => {
+    eventE2.on('event1', data => {
       console.log(data); //  { a: 1 } { a: 2 }
     });
 
@@ -730,7 +730,7 @@ TODO ЗАДАЧИ:
         if (!channel || !channel.length) {
           return;
         }
-        channel.forEach((listener) => listener(data));
+        channel.forEach(listener => listener(data));
       },
     };
 
