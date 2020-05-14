@@ -19,8 +19,9 @@ TODO ЗАДАЧИ:
 * 15)LODASH mapValues замена стандартным методом
 * 16)Массив уникальных объектов
 * 17)Медина
-* 19)Посчитать среднее из массива чисел
-* 18)Среднего значения оценки популярности
+* 18)Посчитать среднее из массива чисел
+* 19)Среднего значения оценки популярности
+* 20)Упрощенная проверка объектов
 */
 
 (function() {
@@ -929,5 +930,62 @@ TODO ЗАДАЧИ:
     }
 
     // console.log(average5(victorianSlang)); // 316.3333333333333
+  })();
+
+  // ! 20
+  (function() {
+    console.log('%c 20) УПРОЩЕННАЯ ПРОВЕРКА ОБЪЕКТОВ', consoleLogStyles);
+
+    // Проверяемый объект
+    const user = {
+      name: 'Bob',
+      password: 'kaBob123',
+      confirmPassword: 'kaBob12',
+      age: 17,
+    };
+
+    // Правила проверки
+    const rules = [
+      {
+        test: user => user.name.length > 2,
+        message: "User's name is too short",
+      },
+      {
+        test: user => user.password.length >= 8,
+        message: "User's password is too short",
+      },
+      {
+        test: user => user.password === user.confirmPassword,
+        message: 'Password and confirmation do not match',
+      },
+      {
+        test: user => user.age >= 18,
+        message: 'User must be at least 18 years old',
+      },
+    ];
+
+    // Функция проверки
+    const validate = (obj, rules) => {
+      const errors = rules.reduce((errs, rule) => {
+        const result = rule.test(obj);
+        if (result === false) {
+          errs.push(rule.message);
+        }
+        return errs;
+      }, []);
+
+      return {
+        errors,
+        isValid: errors.length === 0,
+      };
+    };
+
+    const result = validate(user, rules);
+    /*
+      {
+        errors:[ 'Password and confirmation do not match', 'User must be at least 18 years old' ],
+        isValid: false
+      }
+    */
   })();
 })();

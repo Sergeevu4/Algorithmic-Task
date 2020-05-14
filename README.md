@@ -64,6 +64,9 @@
     6. Количество протеина необходимо на период
     7. Палиндром
     8. Перевернуть строку задом на перед
+    8. Перевернуть строку задом на перед
+    8. Перевернуть строку задом на перед
+    8. Перевернуть строку задом на перед
 
 ## [reduce.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/reduce.js)
 
@@ -86,6 +89,7 @@
     17. Медина
     18. Посчитать среднее из массива чисел
     19. Среднего значения оценки популярности
+    20. Упрощенная проверка объектов
 
 ## [function-htmlacademy.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/function-htmlacademy.js)
 
