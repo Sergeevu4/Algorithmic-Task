@@ -1,4 +1,4 @@
-# Решение разнообразных задач на JavaScript
+# Собственное решение разнообразных задач на JavaScript
 
 Для подсветки комментариев необходимо использовать [плагин](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments 'Better Comments') для VS CODE
 
