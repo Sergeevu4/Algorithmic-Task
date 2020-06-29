@@ -1039,6 +1039,15 @@ TODO ЗАДАЧИ:
       return '#' + randomHex.join('');
     }
 
+    // # Функция №2 рандомного HEX цвета:
+    const generateHex = () => {
+      const hex = Math.floor(Math.random() * 256 ** 3)
+        .toString(16)
+        .padStart(6, '0')
+        .toUpperCase();
+      return `#${hex}`;
+    };
+
     console.log('Рандомный HEX цвет', getRandomHexColor());
   })();
 
@@ -1078,16 +1087,14 @@ TODO ЗАДАЧИ:
     function getRandomBannerId(banners) {
       const sum = banners.reduce((acc, { w }) => acc + w, 0);
       const random = Math.floor(Math.random() * (sum + 1));
-      random;
 
-      // Пере
       let countWeight = 0;
 
       for (const { w, id } of banners) {
         countWeight += w;
 
         // Если вес баннера стал больше чем сумма всех остальных
-        // банеров к рандомному числу- это ближайший баннер
+        // банеров к рандомному числу - это ближайший баннер
         if (countWeight >= random) {
           return id;
         }
