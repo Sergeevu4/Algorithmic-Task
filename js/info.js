@@ -21,6 +21,7 @@
   * 17) Понятие сложности алгоритма
   * 18) Сортировка пузырьком
   * 19) Бинарный (Двоичный) поиск
+  * 20) Debounce и Throttling
 */
 
 (function() {
@@ -208,9 +209,11 @@
 
   // # Reduce + Тернарный оператор + Выход через &&
 
-  /*  && rows -
+  /*
+      && rows -
       Вычисления слево направо, если аргумент — false, оператор && возвращает его и заканчивает вычисления.
   */
+
   const toMatrix2 = (arr, width) =>
     arr.reduce(
       (rows, key, i) => (i % 2 === 0 ? rows.push([key]) : rows[rows.length - 1].push(key)) && rows,
@@ -693,4 +696,87 @@
   }
 
   console.log('Бинарный поиск искомого числа', binarySearch2(arr2, 3));
+})();
+
+(function() {
+  // ! Debounce и Throttling
+
+  /*
+    Debounce — функция будет выполнена только тогда, когда после
+    последней попытки вызова прошло определённое время.
+    Задержка начинает заново отсчитываться с каждой новой попыткой вызова.
+    Например если повесить debounce на onscroll с временем 100ms, то
+    функция выполнится через 100ms после прекращения скрола.
+
+    debounce возвращает функцию, которая будет перезапускать таймер с переданным значением ms.
+    Таким образом, оригинальная функция будет вызвана через ms после последнего вызова debouncedFn.
+  */
+
+  // ! 1
+  function debounce(originalFn, ms) {
+    let timeout;
+    return (...args) => {
+      // очистить таймаут каждый раз, когда вызывается функция
+      clearTimeout(timeout);
+      // вызовите исходную функцию один раз через "ms" после того, как истек последний вызов
+      timeout = setTimeout(() => originalFn(...args), ms);
+    };
+  }
+
+  // ! 2
+  function debounceTwo(f, t) {
+    return function(args) {
+      let previousCall = this.lastCall;
+      this.lastCall = Date.now();
+
+      if (previousCall && this.lastCall - previousCall <= t) {
+        clearTimeout(this.lastCallTimer);
+      }
+      this.lastCallTimer = setTimeout(() => f(args), t);
+    };
+  }
+
+  /*
+    Throttling — функция будет выполняться не чаще одного раза в
+    указанный период, даже если она будет вызвана много раз в течение этого периода.
+    Например если повесить throttle на onscroll с временем 100ms, то функция будет выполнятся каждые 100ms пока происходит скролинг.
+  */
+
+  function throttle(originalFn, ms) {
+    // Игнорируется ли запросы ?
+    let isThrottled = false;
+
+    // Аргументы последнего вызова
+    let saveArgs;
+    // Текущий контекст
+    let savedThis;
+
+    function wrapper() {
+      // Игнорируем
+      if (isThrottled) {
+        saveArgs = arguments;
+        savedThis = this;
+        return;
+      }
+
+      // Вызов переданной функции
+      originalFn.apply(this, arguments);
+      // После первого вызова, должен перестать принимать остальные вызовы
+      isThrottled = true;
+
+      // После необходимого времени заново начинаю принимать запросы
+      setTimeout(() => {
+        isThrottled = false;
+
+        // ! Обработка последнего вызова
+        if (saveArgs) {
+          wrapper.apply(savedThis, saveArgs);
+          savedThis = null;
+          saveArgs = null;
+        }
+      }, ms);
+    }
+
+    wrapper();
+  }
 })();
