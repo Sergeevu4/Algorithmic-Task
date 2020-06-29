@@ -23,6 +23,7 @@
     17. Понятие сложности алгоритма
     18. Сортировка пузырьком
     19. Бинарный (Двоичный) поиск
+    20. Debounce и Throttling
 
 ## [array-htmlacademy.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/array-htmlacademy.js)
 
