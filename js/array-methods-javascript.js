@@ -15,6 +15,7 @@ TODO ЗАДАЧИ:
 * 8) Оставить уникальные элементы массива
 * 9) Найти повторяющийся элементы в массиве и полностью их удалить
 * 10) В массиве парных положительных чисел найти непарное число
+* 11) Заполнить матрицу 10×10 случайными числам от 1 до 100 без повторений
 
 */
 
@@ -762,7 +763,7 @@ TODO ЗАДАЧИ:
 
   // ! 10
   (function() {
-    console.log('%c 11) В МАССИВЕ ПАРНЫХ ПОЛОЖИТЕЛЬНЫХ ЧИСЕЛ НАЙТИ НЕПАРНОЕ ЧИСЛО', consoleLogStyles);
+    console.log('%c 10) В МАССИВЕ ПАРНЫХ ПОЛОЖИТЕЛЬНЫХ ЧИСЕЛ НАЙТИ НЕПАРНОЕ ЧИСЛО', consoleLogStyles);
 
     // # Решение через структуру данных Set
     function findWithPair(numbers) {
@@ -783,5 +784,32 @@ TODO ЗАДАЧИ:
     }
 
     // console.log(findWithPair(pairs)); // 5
+  })();
+
+  // ! 11
+  (function() {
+    console.log(
+      '%c 11) ЗАПОЛНИТЬ МАТРИЦУ 10×10 СЛУЧАЙНЫМИ ЧИСЛАМ ОТ 1 ДО 100 БЕЗ ПОВТОРЕНИЙ',
+      consoleLogStyles
+    );
+
+    function getRandomMatrix(a, b) {
+      const countElements = a * b;
+      const randomElements = Array.from({ length: countElements }, (_, i) => i + 1).sort(
+        () => Math.random() - 0.5
+      );
+
+      return toMatrix(randomElements, a);
+    }
+
+    const toMatrix = (arr, width) =>
+      arr.reduce((acc, item, i) => {
+        if (i % width === 0) {
+          acc.push([item]);
+        } else {
+          acc[acc.length - 1].push(item);
+        }
+        return acc;
+      }, []);
   })();
 })();

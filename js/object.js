@@ -9,6 +9,7 @@ TODO ЗАДАЧИ:
   * 5) Развернуть односвязный список
   * 6) Функция для получения целевого значение во вложенном объекте
   * 7) Выборка по комментариям пользователей
+  * 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв
 */
 
 (function() {
@@ -460,5 +461,41 @@ TODO ЗАДАЧИ:
 
     console.log(`Сколько всего было оставлено комментарий Авторами`, getCounterComments(comments));
     // { aut1: 3, aut2: 1 }
+  })();
+
+  // ! 8
+  (function() {
+    console.log(
+      '%c 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв',
+      consoleLogStyles
+    );
+
+    const input = {
+      ' ': [5],
+      d: [10],
+      e: [1],
+      H: [0],
+      l: [2, 3, 9],
+      o: [4, 7],
+      r: [8],
+      w: [6],
+    };
+
+    const buildString = m => {
+      if (!m) return '';
+
+      return Object.entries(m)
+        .reduce((res, [letter, indexLetter]) => {
+          indexLetter.forEach(number => (res[number] = letter));
+
+          return res;
+        }, [])
+        .join('');
+    };
+
+    console.log(
+      'Hello world' === buildString(input) && 'First Case',
+      '' === buildString() && 'Second Case'
+    );
   })();
 })();

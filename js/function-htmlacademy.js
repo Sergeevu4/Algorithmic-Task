@@ -449,10 +449,10 @@ TODO ЗАДАЧИ:
     console.log('%c 10) НАРИСОВАТЬ "ЕЛКУ" ИСПОЛЬЗУЯ ТОЛЬКО СИМВОЛЫ “_” И "*"', consoleLogStyles);
 
     // Функция для нахождения случайного числа
-    function getRandomInteger(min, max) {
-      let rand = min - 0.5 + Math.random() * (max - min + 1);
-      return Math.round(rand);
-    }
+    // function getRandomInteger(min, max) {
+    //   let rand = min - 0.5 + Math.random() * (max - min + 1);
+    //   return Math.round(rand);
+    // }
 
     /* Задача
       Нарисовать "елку" используя только символы “_” и "*".
