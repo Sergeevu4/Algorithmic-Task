@@ -16,10 +16,11 @@ TODO ЗАДАЧИ:
   * 10) Получения данных у navigator.userAgent
   * 11) В зависимости от True или False будет записан один или другой объект
   * 12) В зависимости от True или False значение в массив
+  * 13) Поменять значение ключей в объекте местами
 */
 
 // ! 1
-(function() {
+(function () {
   // ! Исключение свойств из Объекта через Деструктуризацию
 
   const user = {
@@ -33,7 +34,7 @@ TODO ЗАДАЧИ:
   console.log(noPassword(user)); // { id: 312, name: 'Пётр Иванов' }
 
   // ! Динамически удаляет необходимое свойство
-  const removeProperty = (prop) => ({ [prop]: _, ...rest }) => rest;
+  const removeProperty = prop => ({ [prop]: _, ...rest }) => rest;
   // _ - 312
   // prop - id
   // rest { name: 'Пётр Иванов', password: 'Пароль!' }
@@ -48,7 +49,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 2
-(function() {
+(function () {
   // ! Изменение порядка свойств в Объекте
 
   const user2 = {
@@ -70,7 +71,7 @@ TODO ЗАДАЧИ:
 
   // undefined - может быть любое свойство (так оно означает свойство по умолчанию)
   // ! Главное : , а =
-  const organize2 = (object) => ({ id: undefined, ...object });
+  const organize2 = object => ({ id: undefined, ...object });
 
   console.log(organize2(user2)); // { id: 111, password: 'Пароль!', name: 'Артём' }
 
@@ -84,7 +85,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 3
-(function() {
+(function () {
   // ! Свойства по умолчанию
 
   const user3 = {
@@ -108,7 +109,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 4
-(function() {
+(function () {
   // ! Переименование свойств JavaScript
 
   /*
@@ -128,7 +129,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 5
-(function() {
+(function () {
   // ! Добавление свойств с условием
 
   const user6 = { id: 312, name: 'Пётр Иванов' };
@@ -146,7 +147,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 6
-(function() {
+(function () {
   // ! Создание нового объекта с свойствами старого при условии
 
   /*
@@ -177,7 +178,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 7
-(function() {
+(function () {
   // ! Преобразовать объект в два объекта и поменять местами ключи и значение
 
   const abc = { a: 1, b: 2 };
@@ -197,7 +198,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 8
-(function() {
+(function () {
   // ! Поменять местами ключи и значение и вернуть объект
 
   const user6 = { id: 312, name: 'Пётр Иванов' };
@@ -213,7 +214,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 9
-(function() {
+(function () {
   // ! Записать новые свойства в объект через деструктуризацию
 
   let user = {};
@@ -224,17 +225,14 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 10
-(function() {
+(function () {
   // ! Получения данных у navigator.userAgent
 
   // * navigator.userAgent
   const navigatorUserAgent =
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36';
 
-  const [os, userAgent, browserInfo] = navigatorUserAgent
-    .split('(')
-    .join()
-    .split(')');
+  const [os, userAgent, browserInfo] = navigatorUserAgent.split('(').join().split(')');
   // console.log(os)  Mozilla/5.0 ,Windows NT 10.0; Win64; x64
   // console.log(userAgent) AppleWebKit/537.36 ,KHTML, like Gecko
   // console.log(browserInfo)  Chrome/75.0.3770.142 Safari/537.36
@@ -243,7 +241,7 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 11
-(function() {
+(function () {
   // ! В зависимости от True или False будет записан один или другой объект
 
   const isWeekend = false;
@@ -254,10 +252,43 @@ TODO ЗАДАЧИ:
 })();
 
 // ! 12
-(function() {
+(function () {
   // ! В зависимости от True или False значение в массив
   const yes = true;
   const no = false;
   [1, 2, yes && 3].filter(Boolean); // [ 1, 2, 3 ]
   [1, 2, no && 3].filter(Boolean); // [ 1, 2 ]
+})();
+
+// ! 13
+(function () {
+  // ! Поменять значение ключей в объекте местами
+
+  const firstPuzzle = {
+    id: 1,
+    edges: {
+      bottom: { edgeTypeId: 383, type: 'outside' },
+      left: { edgeTypeId: 238, type: 'inside' },
+      top: null,
+      right: null,
+    },
+  };
+
+  const {
+    edges: { right: left, left: right, ...otherEdges },
+    ...otherPuzzle
+  } = firstPuzzle;
+
+  // Замена без сохранения последовательности
+  const newPuzzle = { ...otherPuzzle, edges: { left, right, ...otherEdges } };
+
+  // Замена c сохранения последовательности
+  const newPuzzle2 = {
+    ...otherPuzzle,
+    edges: {
+      ...firstPuzzle.edges,
+      left,
+      right,
+    },
+  };
 })();
