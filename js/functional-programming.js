@@ -10,7 +10,7 @@ TODO ЗАДАЧИ:
   * 6) Создать тикающие часы: Декларативное решение
   */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -20,7 +20,7 @@ TODO ЗАДАЧИ:
     'padding: 5px',
   ].join(';');
 
-  (function() {
+  (function () {
     console.log('%c 1) ЧИСТЫЕ ФУНКЦИИ (ФУНКЦИОНАЛЬНЫЙ СТИЛЬ)', consoleLogStyles);
 
     // ! Чистые функции:
@@ -170,7 +170,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !2
-  (function() {
+  (function () {
     console.log('%c 2) КАРРИРОВАНИЕ', consoleLogStyles);
 
     /*
@@ -197,7 +197,7 @@ TODO ЗАДАЧИ:
     map(getName)(people); // [ 'Alex', 'Julia', 'Leo', 'Den' ]
   })();
 
-  (function() {
+  (function () {
     console.log('%c 3) КОМПОЗИЦИЯ', consoleLogStyles);
 
     /*
@@ -225,7 +225,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !4
-  (function() {
+  (function () {
     console.log('%c 4) ОТЛАДКА ФУНКЦИОНАЛЬНЫХ КОМПОЗИЦИЙ', consoleLogStyles);
 
     // ! Отладка функциональных композиций
@@ -276,7 +276,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !5
-  (function() {
+  (function () {
     console.log('%c 5) СОЗДАТЬ ТИКАЮЩИЕ ЧАСЫ: ИМПЕРАТИВНОЕ РЕШЕНИЕ', consoleLogStyles);
 
     // ! Императивное решение:
@@ -344,7 +344,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !6
-  (function() {
+  (function () {
     console.log('%c 6) СОЗДАТЬ ТИКАЮЩИЕ ЧАСЫ: ДЕКЛАРАТИВНОЕ РЕШЕНИЕ', consoleLogStyles);
     // ! Декларативное решение:
 
