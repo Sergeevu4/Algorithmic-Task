@@ -32,7 +32,7 @@ TODO ЗАДАЧИ:
       То есть, символ может повторяться много раз или вообще отсутствовать.
 */
 
-(function() {
+(function () {
   // ? 1
   /*
   TODO Метод match у строк
@@ -96,7 +96,7 @@ TODO ЗАДАЧИ:
   console.log(result);
 })();
 
-(function() {
+(function () {
   // ? 3 Напишите регулярное выражение для поиска времени в строке: Завтрак в 09:00.
   const breakfastClock = `Завтрак в 13:00`;
   const breakfastClockRegExp = breakfastClock.match(/\d\d:\d\d/gi); //  [ '13:00' ]
@@ -143,7 +143,7 @@ TODO ЗАДАЧИ:
   // console.log(colorsHtmlRegExp)  //
 })();
 
-(function() {
+(function () {
   // ? 11 Найти начало комментария <!--, затем всё до конца -->.
 
   /*
@@ -160,7 +160,7 @@ TODO ЗАДАЧИ:
   // console.log(commentsRegExp);
 })();
 
-(function() {
+(function () {
   // ? 12 Найти (открывающихся и закрывающихся) HTML-тегов вместе с атрибутами
   /*
     Найти HTML-теги
@@ -179,7 +179,7 @@ TODO ЗАДАЧИ:
   // console.log(tagsRegExp);
 })();
 
-(function() {
+(function () {
   // ? 13 Цвет в формате #abc или #abcdef после которого идут 3 или 6 символа
   /*
   Напишите регулярное выражение, которое находит цвет в формате #abc или #abcdef.
@@ -193,7 +193,7 @@ TODO ЗАДАЧИ:
   // console.log(colorStrRegExp);
 })();
 
-(function() {
+(function () {
   // ? 14 Разобрать Арифметическое выражение
 
   /*
@@ -270,25 +270,17 @@ TODO ЗАДАЧИ:
   console.log(arrPush);
 })();
 
-(function() {
+(function () {
   // ? 15 Удалить все дубликаты из строки и все знаки в этой строке, все пробелы в начале и в конце
   const s = ' Hello World, here we are ARE world! Hello World ';
 
-  const words = s => [
-    ...new Set(
-      s
-        .toLowerCase()
-        .replace(/\W+/g, ' ')
-        .trim()
-        .split(/\s/)
-    ),
-  ]; // [ 'hello', 'world', 'here', 'we', 'are' ]
+  const words = s => [...new Set(s.toLowerCase().replace(/\W+/g, ' ').trim().split(/\s/))]; // [ 'hello', 'world', 'here', 'we', 'are' ]
 
   // console.log(words(s));
   // console.log(words(s + s));
 })();
 
-(function() {
+(function () {
   // ? 16 Найти в тексте строку в кавычках ("") и ('')
   /*
     Необходимо найти в тексте строку в кавычках.
@@ -314,7 +306,7 @@ TODO ЗАДАЧИ:
 */
 })();
 
-(function() {
+(function () {
   // ? 18 Найдите, все языки программирования которые находятся в строке
 
   const languagesProgram = 'Java, JavaScript, PHP, C, C++';
@@ -323,7 +315,7 @@ TODO ЗАДАЧИ:
   // console.log(languagesProgramRegExp);
 })();
 
-(function() {
+(function () {
   // ? 19 Найдите тег style, кроме <styler>
   /*
 		Напишите регулярное выражение, которое будет искать в тексте тег <style>.
@@ -344,7 +336,7 @@ TODO ЗАДАЧИ:
   console.log(tegStyleRegExp2);
 })();
 
-(function() {
+(function () {
   // ? 20 Удалить последнюю запятую в строке
   // Для функции может не подойди
 

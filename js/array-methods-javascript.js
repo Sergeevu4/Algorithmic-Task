@@ -19,7 +19,7 @@ TODO ЗАДАЧИ:
 
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -30,7 +30,7 @@ TODO ЗАДАЧИ:
   ].join(';');
 
   // ! 1
-  (function() {
+  (function () {
     console.log('%c 1) ДОБАВИТЬ КЛАСС В СТРОКУ, НО ТОЛЬКО ЕСЛИ ЕГО ТАМ ЕЩЕ НЕТ', consoleLogStyles);
     // Задача Добавить класс в строку, но только если его там еще нет
 
@@ -126,7 +126,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 2
-  (function() {
+  (function () {
     console.log('%c 2) УДАЛЯТЬ КЛАСС В СТРОКЕ, НО ТОЛЬКО ЕСЛИ ОН ТАМ ЕСТЬ', consoleLogStyles);
     /* Задача
       Написать функцию removeClass(obj, cls), которая удаляет класс cls, если он есть:
@@ -218,7 +218,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 3
-  (function() {
+  (function () {
     console.log('%c 3) ПЕРЕВЕСТИ ТЕКСТ ВИДА BORDER-LEFT-WIDTH В BORDERLEFTWIDTH', consoleLogStyles);
 
     /* Задача
@@ -325,7 +325,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c 4) ФИЛЬТРАЦИЯ ПО ДИАПАЗОНУ', consoleLogStyles);
 
     /*
@@ -388,7 +388,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 5
-  (function() {
+  (function () {
     console.log('%c 5) ЯВЛЯЮТСЯ ЛИ СТРОКИ АНОГРАММАМИ', consoleLogStyles);
 
     /*
@@ -422,12 +422,7 @@ TODO ЗАДАЧИ:
     */
 
     const sort = string => {
-      return string
-        .replace(/\s+/g, '')
-        .toLowerCase()
-        .split('')
-        .sort()
-        .join('');
+      return string.replace(/\s+/g, '').toLowerCase().split('').sort().join('');
     };
 
     /*
@@ -525,7 +520,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 6
-  (function() {
+  (function () {
     console.log('%c 6) ОТФИЛЬТРОВАТЬ АНАГРАММЫ', consoleLogStyles);
     // https://learn.javascript.ru/task/filter-anagrams
 
@@ -538,11 +533,7 @@ TODO ЗАДАЧИ:
 
       for (let i = 0; i < arr.length; i++) {
         // разбить строку на буквы, отсортировать и слить обратно
-        let sorted = arr[i]
-          .toLowerCase()
-          .split('')
-          .sort()
-          .join(''); // (*)
+        let sorted = arr[i].toLowerCase().split('').sort().join(''); // (*)
 
         obj[sorted] = arr[i]; // сохраняет только одно значение с таким ключом
       }
@@ -584,7 +575,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 7
-  (function() {
+  (function () {
     console.log('%c 6) СГРУППИРОВАТЬ АНАГРАММЫ АНАГРАММЫ', consoleLogStyles);
 
     /*
@@ -604,11 +595,7 @@ TODO ЗАДАЧИ:
     const aclean3 = arr => {
       const map = arr.reduce((acc, str) => {
         // сгруппируем анаграммы в хеш-таблице
-        const key = str
-          .toLowerCase()
-          .split('')
-          .sort()
-          .join('');
+        const key = str.toLowerCase().split('').sort().join('');
         if (acc[key]) {
           acc[key].push(str);
         } else {
@@ -678,7 +665,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log('%c 8) ОСТАВИТЬ УНИКАЛЬНЫЕ ЭЛЕМЕНТЫ МАССИВА', consoleLogStyles);
 
     const strings = ['кришна', 'кришна', 'харе', 'харе', 'харе', 'харе', 'кришна', 'кришна', '8-()'];
@@ -696,7 +683,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 9
-  (function() {
+  (function () {
     console.log('%c 9) НАЙТИ ПОВТОРЯЮЩИЙСЯ ЭЛЕМЕНТЫ В МАССИВЕ И ПОЛНОСТЬЮ ИХ УДАЛИТЬ', consoleLogStyles);
 
     // Полное удаление повторяющихся элементов из массива
@@ -762,7 +749,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 10
-  (function() {
+  (function () {
     console.log('%c 10) В МАССИВЕ ПАРНЫХ ПОЛОЖИТЕЛЬНЫХ ЧИСЕЛ НАЙТИ НЕПАРНОЕ ЧИСЛО', consoleLogStyles);
 
     // # Решение через структуру данных Set
@@ -787,7 +774,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 11
-  (function() {
+  (function () {
     console.log(
       '%c 11) ЗАПОЛНИТЬ МАТРИЦУ 10×10 СЛУЧАЙНЫМИ ЧИСЛАМ ОТ 1 ДО 100 БЕЗ ПОВТОРЕНИЙ',
       consoleLogStyles
