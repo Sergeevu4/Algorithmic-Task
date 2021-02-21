@@ -11,6 +11,7 @@ TODO ЗАДАЧИ:
   * 7) Выборка по комментариям пользователей
   * 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв
   * 9) Получить значение в объекте по указанному пути
+  * 10) Получить недостающие имена числителей вкладок
 */
 
 (function () {
@@ -563,5 +564,63 @@ TODO ЗАДАЧИ:
     // console.log(get3(objTest, 'a.c')); // {f: 42}
     // console.log(get3(objTest, 'c.c.f')); // null
     // console.log(get3(objTest, 'a.x.c.f', 0)); // 0
+  })();
+
+  // ! 10
+  (function () {
+    console.log('%c 10) ПОЛУЧИТЬ НЕДОСТАЮЩИЕ ИМЕНА ЧИСЛИТЕЛЕЙ ВКЛАДОК', consoleLogStyles);
+    const entities = [
+      {
+        id: 1047,
+        name: 'Вкладка 2',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1044,
+        name: 'Вкладка 8',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1047,
+        name: 'Вкладка 5',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1047,
+        name: 'Вкладка 3s',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1047,
+        name: 'Вкладка 10',
+        widgets: [],
+        hidden: false,
+      },
+    ];
+
+    // Отфильтрованные значения имени вкладок
+    const getSortNameCounters = tabsWorkspaceNames =>
+      tabsWorkspaceNames
+        .reduce((acc, name) => {
+          const found = name.match(/^Вкладка (\d+)$/);
+          return found ? acc.concat(Number(found[1])) : acc;
+        }, [])
+        .sort((a, b) => a - b);
+
+    // Потерянные значения имени вкладок
+    const getMissingCounterNames = nameCounters => {
+      const max = Math.max(...nameCounters);
+      const foundRange = Array.from({ length: max - 1 }, (_, i) => i + 1).filter(
+        number => !nameCounters.includes(number)
+      );
+      return foundRange;
+    };
+
+    const namesTabsCounter = getSortNameCounters(entities.map(item => item.name)); //  [ 2, 5, 8, 10 ]
+    console.log(getMissingCounterNames(namesTabsCounter)); //  [ 1, 3, 4, 6, 7, 9 ]
   })();
 })();

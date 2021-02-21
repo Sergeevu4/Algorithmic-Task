@@ -174,6 +174,7 @@
     7. Выборка по комментариям пользователей
     8. Составить фразу: Ключи это буквы, свойства в массиве index этих букв
     9. Получить значение в объекте по указанному пути
+    10. Получить недостающие имена числителей вкладок
 
 ## [functional-programming.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/functional-programming.js)
 
