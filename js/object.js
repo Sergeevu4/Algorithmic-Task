@@ -10,9 +10,10 @@ TODO ЗАДАЧИ:
   * 6) Функция для получения целевого значение во вложенном объекте
   * 7) Выборка по комментариям пользователей
   * 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв
+  * 9) Получить значение в объекте по указанному пути
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -22,7 +23,7 @@ TODO ЗАДАЧИ:
     'padding: 5px',
   ].join(';');
 
-  (function() {
+  (function () {
     console.log('%c 1) МАССИВ УНИКАЛЬНЫХ ОБЪЕКТОВ (УДАЛЕНИЯ ДУБЛИКАТОВ)', consoleLogStyles);
 
     const books = [
@@ -135,7 +136,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !2
-  (function() {
+  (function () {
     console.log('%c 2) ПРОВЕРКА НА СУЩЕСТВОВАНИЕ СВОЙСТВ В ОБЪЕКТЕ', consoleLogStyles);
 
     // * Проверка на существование свойств в объекте
@@ -185,7 +186,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !3
-  (function() {
+  (function () {
     console.log('%c 3) ИЗ ДВУХ МАССИВОВ СОБРАТЬ, ОДИН МАССИВ ОБЪЕКТОВ', consoleLogStyles);
 
     /*
@@ -259,7 +260,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c 4) ВЫВЕСТИ ОДНОСВЯЗНЫЙ СПИСОК', consoleLogStyles);
 
     /*
@@ -343,7 +344,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !5
-  (function() {
+  (function () {
     console.log('%c 5) РАЗВЕРНУТЬ ОДНОСВЯЗНЫЙ СПИСОК', consoleLogStyles);
     const list = {
       value: 1,
@@ -375,7 +376,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !6
-  (function() {
+  (function () {
     console.log('%c 6) ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ЦЕЛЕВОГО ЗНАЧЕНИЕ ВО ВЛОЖЕННОМ ОБЪЕКТЕ', consoleLogStyles);
 
     // !Как вернуть целевое значение во вложенном объекте JSON на основе заданного ключа.
@@ -400,7 +401,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !7
-  (function() {
+  (function () {
     console.log('%c 7) ВЫБОРКА ПО КОММЕНТАРИЯМ ПОЛЬЗОВАТЕЛЕЙ', consoleLogStyles);
 
     const comments = [
@@ -464,7 +465,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log(
       '%c 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв',
       consoleLogStyles
@@ -497,5 +498,70 @@ TODO ЗАДАЧИ:
       'Hello world' === buildString(input) && 'First Case',
       '' === buildString() && 'Second Case'
     );
+  })();
+
+  // ! 9
+  (function () {
+    console.log('%c 9) ПОЛУЧИТЬ ЗНАЧЕНИЕ В ОБЪЕКТЕ ПО УКАЗАННОМУ ПУТИ', consoleLogStyles);
+
+    // get
+    const objTest = {
+      a: {
+        a: 1,
+        b: 2,
+        c: {
+          f: 42,
+        },
+      },
+      b: {
+        a: 4,
+      },
+      z: 5,
+    };
+
+    // Reduce
+    function get(tree, way, def = null) {
+      const path = way.split('.');
+
+      return path.reduce((acc, item) => {
+        if (acc) {
+          acc = acc[item];
+          return acc;
+        }
+
+        return def;
+      }, tree);
+    }
+
+    // Через цикл с выходом
+    function get2(tree, way, def = null) {
+      const path = way.split('.');
+      let result = tree;
+
+      for (let key of path) {
+        if (!result) break;
+        result = result[key];
+      }
+
+      return result || def;
+    }
+
+    // Выход через Every
+    function get3(tree, way, def = null) {
+      const path = way.split('.');
+      let result = tree;
+
+      path.every(key => {
+        result = result[key];
+        return Boolean(result);
+      });
+
+      return result || def;
+    }
+
+    // console.log(get3(objTest, 'a.c.f', 'test')); // 42
+    // console.log(get3(objTest, 'a.c')); // {f: 42}
+    // console.log(get3(objTest, 'c.c.f')); // null
+    // console.log(get3(objTest, 'a.x.c.f', 0)); // 0
   })();
 })();
