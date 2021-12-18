@@ -212,6 +212,14 @@
       return rows;
     }, []);
 
+  // # Функция для группировки
+  const getGroup = (arr, group) =>
+    arr.reduce((acc, item, index) => {
+      if (index % group === 0) acc.push([item]);
+      else acc[acc.length - 1].push(item);
+      return acc;
+    }, []);
+
   // console.log(toMatrix(matrix, 2))  // [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ], [ 7, 8 ] ]
 
   // # Reduce + Тернарный оператор + Выход через &&
@@ -230,13 +238,19 @@
 
   // console.log(toMatrix2(matrix))  // [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ], [ 7, 8 ] ]
 
-  // # Функция для группировки
-  const getGroup = (arr, group) =>
-    arr.reduce((acc, item, index) => {
-      if (index % group === 0) acc.push([item]);
-      else acc[acc.length - 1].push(item);
-      return acc;
-    }, []);
+  // # Через Array.from + Slice
+  const chunk = (arr, size) =>
+    // В большую часть
+    Array.from(
+      { length: Math.ceil(arr.length / size) },
+      (v, i) =>
+        // i * size -> 0 2 4 6
+        // i * size + size -> 2 4 6 8
+        arr.slice(i * size, i * size + size) // [ 1, 2 ] [ 3, 4 ] [ 5, 6 ] [ 7, 8 ]
+    );
+
+  // [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ], [ 7, 8 ] ]
+  chunk([1, 2, 3, 4, 5, 6, 7, 8], 2);
 })();
 
 (function () {

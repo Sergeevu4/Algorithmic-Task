@@ -623,4 +623,120 @@ TODO ЗАДАЧИ:
     const namesTabsCounter = getSortNameCounters(entities.map(item => item.name)); //  [ 2, 5, 8, 10 ]
     console.log(getMissingCounterNames(namesTabsCounter)); //  [ 1, 3, 4, 6, 7, 9 ]
   })();
+
+  // ! 11
+  (function () {
+    console.log('%c 11) Аккумулировать диаграмм по типу согласно их категории', consoleLogStyles);
+
+    const data = [
+      {
+        id: 1,
+        name: 'Граф процесса',
+        category: 'Базовые',
+        type: 'Граф',
+      },
+      {
+        id: 2,
+        name: 'Диаграмма',
+        category: 'Базовые',
+        type: 'Диаграмма',
+      },
+      {
+        id: 3,
+        name: 'Диграмма пути процесса',
+        category: 'Базовые',
+        type: 'Диаграмма',
+      },
+      {
+        id: 4,
+        name: 'Факторный анализ',
+        category: 'Базовые',
+        type: 'Факторный анализ',
+      },
+      {
+        id: 5,
+        name: 'Текстовый анализ',
+        category: 'Базовые',
+        type: 'Текстовый анализ',
+      },
+      {
+        id: 6,
+        name: 'Сравнительный анализ',
+        category: 'Не базовый',
+        type: 'Сравнительный анализ',
+      },
+    ];
+
+    const nav = Object.values(
+      data.reduce((acc, item) => {
+        if (!acc[item.category]) {
+          acc[item.category] = {
+            category: item.category,
+            types: [item.type],
+          };
+        } else {
+          acc[item.category].types.push(item.type);
+        }
+
+        return acc;
+      }, {})
+    );
+
+    // console.log(nav);
+
+    // ! Решение без Object.values + дефолтное состояние
+    const nav2 = data.reduce(
+      (acc, item, i) => {
+        if (!acc.map[item.category]) {
+          acc.map[item.category] = {
+            category: item.category,
+            types: [item.type],
+          };
+          acc.category.push(acc.map[item.category]);
+        } else {
+          acc.map[item.category].types.push(item.type);
+        }
+
+        return acc;
+      },
+      {
+        map: {},
+        category: [
+          {
+            category: 'Все',
+            types: [],
+          },
+        ],
+      }
+    );
+
+    // console.log(nav.category);
+
+    const navigators = [];
+    // eslint-disable-next-line no-debugger
+
+    data.forEach(item => {
+      const findElement = navigators.find(ct => ct.category === item.category);
+
+      if (!findElement) {
+        navigators.push({ category: item.category, types: [item.type] });
+      } else if (!findElement.types.includes(item.type)) {
+        findElement.types.push(item.type);
+      }
+    });
+  })();
+
+  // ! Результат
+  // {
+  //   [
+  //     {
+  //       category: 'Базовые',
+  //       types: ['Граф', 'Диаграмма', 'Диаграмма', 'Факторный анализ', 'Текстовый анализ'],
+  //     },
+  //     {
+  //       category: 'Не базовый',
+  //       types: ['Сравнительный анализ'],
+  //     },
+  //   ];
+  // }
 })();
