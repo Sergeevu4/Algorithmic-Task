@@ -10,9 +10,11 @@ TODO ЗАДАЧИ:
   * 6) Функция для получения целевого значение во вложенном объекте
   * 7) Выборка по комментариям пользователей
   * 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв
+  * 9) Получить value в объекте по указанному пути
+  * 10) Получить недостающий числитель в имени вкладок
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -22,7 +24,7 @@ TODO ЗАДАЧИ:
     'padding: 5px',
   ].join(';');
 
-  (function() {
+  (function () {
     console.log('%c 1) МАССИВ УНИКАЛЬНЫХ ОБЪЕКТОВ (УДАЛЕНИЯ ДУБЛИКАТОВ)', consoleLogStyles);
 
     const books = [
@@ -135,7 +137,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !2
-  (function() {
+  (function () {
     console.log('%c 2) ПРОВЕРКА НА СУЩЕСТВОВАНИЕ СВОЙСТВ В ОБЪЕКТЕ', consoleLogStyles);
 
     // * Проверка на существование свойств в объекте
@@ -185,7 +187,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !3
-  (function() {
+  (function () {
     console.log('%c 3) ИЗ ДВУХ МАССИВОВ СОБРАТЬ, ОДИН МАССИВ ОБЪЕКТОВ', consoleLogStyles);
 
     /*
@@ -259,7 +261,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c 4) ВЫВЕСТИ ОДНОСВЯЗНЫЙ СПИСОК', consoleLogStyles);
 
     /*
@@ -343,7 +345,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !5
-  (function() {
+  (function () {
     console.log('%c 5) РАЗВЕРНУТЬ ОДНОСВЯЗНЫЙ СПИСОК', consoleLogStyles);
     const list = {
       value: 1,
@@ -375,7 +377,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !6
-  (function() {
+  (function () {
     console.log('%c 6) ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ЦЕЛЕВОГО ЗНАЧЕНИЕ ВО ВЛОЖЕННОМ ОБЪЕКТЕ', consoleLogStyles);
 
     // !Как вернуть целевое значение во вложенном объекте JSON на основе заданного ключа.
@@ -400,7 +402,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !7
-  (function() {
+  (function () {
     console.log('%c 7) ВЫБОРКА ПО КОММЕНТАРИЯМ ПОЛЬЗОВАТЕЛЕЙ', consoleLogStyles);
 
     const comments = [
@@ -464,7 +466,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log(
       '%c 8) Составить фразу: Ключи это буквы, свойства в массиве index этих букв',
       consoleLogStyles
@@ -498,4 +500,243 @@ TODO ЗАДАЧИ:
       '' === buildString() && 'Second Case'
     );
   })();
+
+  // ! 9
+  (function () {
+    console.log('%c 9) ПОЛУЧИТЬ VALUE В ОБЪЕКТЕ ПО УКАЗАННОМУ ПУТИ', consoleLogStyles);
+
+    // get
+    const objTest = {
+      a: {
+        a: 1,
+        b: 2,
+        c: {
+          f: 42,
+        },
+      },
+      b: {
+        a: 4,
+      },
+      z: 5,
+    };
+
+    // Reduce
+    function get(tree, way, def = null) {
+      const path = way.split('.');
+
+      return path.reduce((acc, item) => {
+        if (acc) {
+          acc = acc[item];
+          return acc;
+        }
+
+        return def;
+      }, tree);
+    }
+
+    // Через цикл с выходом
+    function get2(tree, way, def = null) {
+      const path = way.split('.');
+      let result = tree;
+
+      for (let key of path) {
+        if (!result) break;
+        result = result[key];
+      }
+
+      return result || def;
+    }
+
+    // Выход через Every
+    function get3(tree, way, def = null) {
+      const path = way.split('.');
+      let result = tree;
+
+      path.every(key => {
+        result = result[key];
+        return Boolean(result);
+      });
+
+      return result || def;
+    }
+
+    // console.log(get3(objTest, 'a.c.f', 'test')); // 42
+    // console.log(get3(objTest, 'a.c')); // {f: 42}
+    // console.log(get3(objTest, 'c.c.f')); // null
+    // console.log(get3(objTest, 'a.x.c.f', 0)); // 0
+  })();
+
+  // ! 10
+  (function () {
+    console.log('%c 10) ПОЛУЧИТЬ НЕДОСТАЮЩИЙ ЧИСЛИТЕЛЬ В ИМЕНИ ВКЛАДОК', consoleLogStyles);
+    const entities = [
+      {
+        id: 1047,
+        name: 'Вкладка 2',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1044,
+        name: 'Вкладка 8',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1047,
+        name: 'Вкладка 5',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1047,
+        name: 'Вкладка 3s',
+        widgets: [],
+        hidden: false,
+      },
+      {
+        id: 1047,
+        name: 'Вкладка 10',
+        widgets: [],
+        hidden: false,
+      },
+    ];
+
+    // Отфильтрованные значения имени вкладок
+    const getSortNameCounters = tabsWorkspaceNames =>
+      tabsWorkspaceNames
+        .reduce((acc, name) => {
+          const found = name.match(/^Вкладка (\d+)$/);
+          return found ? acc.concat(Number(found[1])) : acc;
+        }, [])
+        .sort((a, b) => a - b);
+
+    // Потерянные значения имени вкладок
+    const getMissingCounterNames = nameCounters => {
+      const max = Math.max(...nameCounters);
+      const foundRange = Array.from({ length: max - 1 }, (_, i) => i + 1).filter(
+        number => !nameCounters.includes(number)
+      );
+      return foundRange;
+    };
+
+    const namesTabsCounter = getSortNameCounters(entities.map(item => item.name)); //  [ 2, 5, 8, 10 ]
+    console.log(getMissingCounterNames(namesTabsCounter)); //  [ 1, 3, 4, 6, 7, 9 ]
+  })();
+
+  // ! 11
+  (function () {
+    console.log('%c 11) Аккумулировать диаграмм по типу согласно их категории', consoleLogStyles);
+
+    const data = [
+      {
+        id: 1,
+        name: 'Граф процесса',
+        category: 'Базовые',
+        type: 'Граф',
+      },
+      {
+        id: 2,
+        name: 'Диаграмма',
+        category: 'Базовые',
+        type: 'Диаграмма',
+      },
+      {
+        id: 3,
+        name: 'Диграмма пути процесса',
+        category: 'Базовые',
+        type: 'Диаграмма',
+      },
+      {
+        id: 4,
+        name: 'Факторный анализ',
+        category: 'Базовые',
+        type: 'Факторный анализ',
+      },
+      {
+        id: 5,
+        name: 'Текстовый анализ',
+        category: 'Базовые',
+        type: 'Текстовый анализ',
+      },
+      {
+        id: 6,
+        name: 'Сравнительный анализ',
+        category: 'Не базовый',
+        type: 'Сравнительный анализ',
+      },
+    ];
+
+    const nav = Object.values(
+      data.reduce((acc, item) => {
+        if (!acc[item.category]) {
+          acc[item.category] = {
+            category: item.category,
+            types: [item.type],
+          };
+        } else {
+          acc[item.category].types.push(item.type);
+        }
+
+        return acc;
+      }, {})
+    );
+
+    // console.log(nav);
+
+    // ! Решение без Object.values + дефолтное состояние
+    const nav2 = data.reduce(
+      (acc, item, i) => {
+        if (!acc.map[item.category]) {
+          acc.map[item.category] = {
+            category: item.category,
+            types: [item.type],
+          };
+          acc.category.push(acc.map[item.category]);
+        } else {
+          acc.map[item.category].types.push(item.type);
+        }
+
+        return acc;
+      },
+      {
+        map: {},
+        category: [
+          {
+            category: 'Все',
+            types: [],
+          },
+        ],
+      }
+    );
+
+    // console.log(nav.category);
+
+    const navigators = [];
+    // eslint-disable-next-line no-debugger
+
+    data.forEach(item => {
+      const findElement = navigators.find(ct => ct.category === item.category);
+
+      if (!findElement) {
+        navigators.push({ category: item.category, types: [item.type] });
+      } else if (!findElement.types.includes(item.type)) {
+        findElement.types.push(item.type);
+      }
+    });
+  })();
+
+  // ! Результат
+  // {
+  //   [
+  //     {
+  //       category: 'Базовые',
+  //       types: ['Граф', 'Диаграмма', 'Диаграмма', 'Факторный анализ', 'Текстовый анализ'],
+  //     },
+  //     {
+  //       category: 'Не базовый',
+  //       types: ['Сравнительный анализ'],
+  //     },
+  //   ];
+  // }
 })();

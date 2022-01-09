@@ -24,7 +24,7 @@ TODO ЗАДАЧИ:
 * 20)Упрощенная проверка объектов
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -37,7 +37,7 @@ TODO ЗАДАЧИ:
   // console.log('%cHello There', consoleLogStyles);
 
   // ! 1
-  (function() {
+  (function () {
     console.log('%c 1) МАССИВ В ОБРАТНОМ ПОРЯДКЕ', consoleLogStyles);
 
     const numbers2 = [41, 38, 78, 98, 33];
@@ -51,7 +51,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 2
-  (function() {
+  (function () {
     console.log('%c 2) СКОЛЬКО РАЗ ВСТРЕЧАЕТСЯ В МАССИВЕ ИЛИ В СТРОКЕ', consoleLogStyles);
 
     const fruitBasket = [
@@ -119,7 +119,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 3
-  (function() {
+  (function () {
     console.log('%c 3) ВЫЧИСЛИТЬ ОБЩУЮ СТОИМОСТЬ ТОВАРОВ И ВЫСТАВИТЬ ПОКУПАТЕЛЮ СЧЁТ', consoleLogStyles);
 
     /*
@@ -165,9 +165,9 @@ TODO ЗАДАЧИ:
     последовательно вызывая функцию-редюсер для каждого типа валют: */
 
     // Основная функция которая вызывает объект функций
-    let combineReducers = function(reducers) {
-      return function(state, item) {
-        return Object.keys(reducers).reduce(function(nextState, key) {
+    let combineReducers = function (reducers) {
+      return function (state, item) {
+        return Object.keys(reducers).reduce(function (nextState, key) {
           reducers[key](state, item);
           return state;
         }, {});
@@ -197,7 +197,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c  4) МНОГОУРОВНЕВЫЙ МАССИВ В ОДНОУРОВНЕВЫЙ МАССИВ', consoleLogStyles);
 
     let arr = [1, [2], [3, [[4]]]];
@@ -205,7 +205,7 @@ TODO ЗАДАЧИ:
     // Метод основанный на Рекурсии
     function flatten(arr) {
       if (Array.isArray(arr)) {
-        return arr.reduce(function(done, curr) {
+        return arr.reduce(function (done, curr) {
           return done.concat(flatten(curr));
         }, []);
       } else {
@@ -245,7 +245,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 5
-  (function() {
+  (function () {
     console.log('%c 5) НАЙТИ В ОБЪЕКТЕ: САМЫЙ СИЛЬНЫЙ ГЕРОЙ + СУММА СИЛЫ', consoleLogStyles);
 
     const heroes = [
@@ -296,7 +296,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 6
-  (function() {
+  (function () {
     console.log('%c 6) НАЙТИ В ОБЪЕКТЕ: ПОЛЯ, КОТОРЫЕ В ИСХОДНОМ ОБЪЕКТЕ БЫЛИ: TRUE', consoleLogStyles);
 
     const modes = {
@@ -315,7 +315,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 7
-  (function() {
+  (function () {
     console.log(
       '%c 7) МАССИВ НАЗВАНИЙ КНИГ, ПРЕОБРАЗОВАТЬ КАЖДЫЙ ЗАГОЛОВОК В ОБЪЕКТ И ДОБАВИТЬ ID',
       consoleLogStyles
@@ -366,7 +366,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log(
       '%c 8) НАЙТИ КОЛИЧЕСТВО ЭЛЕМЕНТОВ МАССИВА, КОТОРЫЕ В СУММЕ НЕ ПРЕВЫШАЮТ LIMIT',
       consoleLogStyles
@@ -385,10 +385,57 @@ TODO ЗАДАЧИ:
     };
 
     console.log(twoSum(arrSum, limitSum)); // [ 0, 1 ]
+
+    const twoSum2 = function (nums, target) {
+      const results = [];
+
+      let currentStop = 0;
+
+      for (let i = 0; i < nums.length; i++) {
+        const one = nums[i];
+
+        for (let j = 1; j < nums.length - i; j++) {
+          const two = nums[i + j];
+          currentStop = one + two;
+
+          if (currentStop === target) {
+            results.push(i, i + j);
+          }
+        }
+      }
+
+      return results;
+    };
+
+    // twoSum([3, 2, 4], 6);
+    // twoSum([3, 3], 6);
+    twoSum([2, 7, 11, 15], 9);
+    // twoSum([3, 2, 3], 6);
+    // twoSum([2, 5, 5, 11], 10);
+
+    const twoSumMap = function (nums, target) {
+      return nums.reduce(
+        (acc, number, index) => {
+          const isStop = target - number;
+
+          if (acc.hash.has(isStop)) {
+            acc.result.push(acc.hash.get(isStop), index);
+          }
+
+          acc.hash.set(number, index);
+
+          return acc;
+        },
+        {
+          hash: new Map(),
+          result: [],
+        }
+      ).result;
+    };
   })();
 
   // ! 9
-  (function() {
+  (function () {
     console.log('%c 9) ОТРИСОВАТЬ ТЕГИ: <li>', consoleLogStyles);
 
     // Map, Set итерируемые структуры данных поэтому работает spread оператор
@@ -408,7 +455,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ? 10
-  (function() {
+  (function () {
     console.log('%c 10) ОТФИЛЬТРОВАТЬ АНАГРАММЫ', consoleLogStyles);
 
     const arrAnagram = ['воз', 'киборг', 'корсет', 'ЗОВ', 'гробик', 'костер', 'сектор'];
@@ -438,7 +485,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ? 11
-  (function() {
+  (function () {
     console.log('%c 11) СГРУППИРОВАТЬ АНАГРАММЫ АНАГРАММЫ', consoleLogStyles);
 
     /*
@@ -457,11 +504,7 @@ TODO ЗАДАЧИ:
     const aclean3 = arr => {
       const map = arr.reduce((acc, str) => {
         // сгруппируем анаграммы в хеш-таблице
-        const key = str
-          .toLowerCase()
-          .split('')
-          .sort()
-          .join('');
+        const key = str.toLowerCase().split('').sort().join('');
         if (acc[key]) {
           acc[key].push(str);
         } else {
@@ -487,7 +530,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 12
-  (function() {
+  (function () {
     console.log('%c 12) ПРЕОБРАЗОВАНИЕ МАССИВА В ОБЪЕКТ', consoleLogStyles);
     // https://www.richsnapp.com/blog/2019/06-09-reduce-spread-anti-pattern
 
@@ -525,7 +568,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 13
-  (function() {
+  (function () {
     console.log('%c 13) ИСПОЛЬЗОВАНИЯ МАССИВА ФУНКЦИЙ ЧЕРЕЗ REDUCE (ТРУБОПРОВОД)', consoleLogStyles);
 
     // increment - increment
@@ -550,7 +593,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 14
-  (function() {
+  (function () {
     console.log('%c 14) НАЙТИ МАКСИМАЛЬНЫЕ ЗНАЧЕНИЯ В МАТРИЦЕ МАССИВОВ И СЛОЖИТЬ ИХ', consoleLogStyles);
 
     const matrix = [
@@ -572,7 +615,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 15
-  (function() {
+  (function () {
     console.log('%c 15) LODASH MAPVALUES ЗАМЕНА СТАНДАРТНЫМ МЕТОДОМ', consoleLogStyles);
     /*
       # mapValues:
@@ -606,7 +649,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 16
-  (function() {
+  (function () {
     console.log('%c 16) МАССИВ УНИКАЛЬНЫХ ОБЪЕКТОВ', consoleLogStyles);
 
     /*
@@ -639,7 +682,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 17
-  (function() {
+  (function () {
     console.log('%c 17) МЕДИАНА', consoleLogStyles);
 
     /*
@@ -685,7 +728,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 18
-  (function() {
+  (function () {
     console.log('%c 18) ПОСЧИТАТЬ СРЕДНЕЕ ИЗ МАССИВА ЧИСЕЛ', consoleLogStyles);
 
     const averageNumbers = [29.76, 41.85, 46.5];
@@ -721,7 +764,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 19
-  (function() {
+  (function () {
     console.log('%c 19) СРЕДНЕГО ЗНАЧЕНИЯ ОЦЕНКИ ПОПУЛЯРНОСТИ', consoleLogStyles);
 
     // !
@@ -857,10 +900,7 @@ TODO ЗАДАЧИ:
       // Объект который становиться аккамулятором внутри reduce
       const initialInfo = { totalPopularity: 0, itemCount: 0 };
 
-      const popularityInfo = arr
-        .filter(isFound)
-        .map(getPopularity)
-        .reduce(addScores, initialInfo);
+      const popularityInfo = arr.filter(isFound).map(getPopularity).reduce(addScores, initialInfo);
 
       // Вычисляем и выводим в консоль среднее значение.
 
@@ -933,7 +973,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 20
-  (function() {
+  (function () {
     console.log('%c 20) УПРОЩЕННАЯ ПРОВЕРКА ОБЪЕКТОВ', consoleLogStyles);
 
     // Проверяемый объект

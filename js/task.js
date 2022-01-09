@@ -22,7 +22,7 @@ TODO ЗАДАЧИ:
   * 18) Проверить последовательность скобок валидной
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -33,7 +33,7 @@ TODO ЗАДАЧИ:
   ].join(';');
 
   // !1
-  (function() {
+  (function () {
     console.log('%c 1) ОПРЕДЕЛИЛИСЬ 8 ЧЕТВЕРТЬФИНАЛИСТОВ ЛИГИ ЧЕМПИОНОВ', consoleLogStyles);
 
     /* ЗАДАЧА
@@ -133,7 +133,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 2
-  (function() {
+  (function () {
     console.log('%c 2) ЛЮБОВНЫЙ ТРЕУГОЛЬНИК', consoleLogStyles);
 
     /* ЗАДАЧА
@@ -212,7 +212,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 3
-  (function() {
+  (function () {
     console.log('%c 3) ХАНОЙСКАЯ БАШНЯ', consoleLogStyles);
 
     /* ЗАДАЧА
@@ -260,7 +260,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c 4) ПЕРЕНОС ГРУЗА С АВТОМОБИЛЯ НА АВТОМОБИЛЬ', consoleLogStyles);
 
     /* ЗАДАЧА
@@ -316,7 +316,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !5
-  (function() {
+  (function () {
     console.log('%c 5) CODEWARS: ВЕРНУТЬ ПЕРВУЮ САМУЮ ДЛИННУЮ СТРОКУ', consoleLogStyles);
     // Вернуть первую длинную строку,
     // состоящую из k последовательных строк, взятых в массиве
@@ -343,10 +343,7 @@ TODO ЗАДАЧИ:
       let newStr = '';
 
       for (let i = 0; i <= strarr.length - k; i++) {
-        let str = strarr
-          .slice()
-          .splice(i, k)
-          .join('');
+        let str = strarr.slice().splice(i, k).join('');
 
         if (newStr.length < str.length) {
           newStr = str;
@@ -474,13 +471,13 @@ TODO ЗАДАЧИ:
   })();
 
   // !6
-  (function() {
+  (function () {
     console.log('%c 6) ОТСОРТИРОВАТЬ КНИГИ ПО ИМЕНИ АВТОРА #POINT-FREE', consoleLogStyles);
 
     const authors = {
-      '1': { name: 'Author C' },
-      '2': { name: 'Author B' },
-      '3': { name: 'Author A' },
+      1: { name: 'Author C' },
+      2: { name: 'Author B' },
+      3: { name: 'Author A' },
     };
 
     const books = [
@@ -533,16 +530,13 @@ TODO ЗАДАЧИ:
 
     // # Point-free callbacks
     function getBooks() {
-      return books
-        .filter(isTechnology)
-        .map(toBookView)
-        .sort(ascByAuthor);
+      return books.filter(isTechnology).map(toBookView).sort(ascByAuthor);
     }
     console.log(getBooks()); // [ { title: 'Book2', author: 'Author B' }, { title: 'Book1', author: 'Author C' } ]
   })();
 
   // !7
-  (function() {
+  (function () {
     console.log(
       '%c 7)ЯНДЕКС: БИНАРНОМ ВЕКТОРЕ САМУЮ ДЛИННУЮ ПОСЛЕДОВАТЕЛЬНОСТЬ ЕДИНИЦ',
       consoleLogStyles
@@ -575,7 +569,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !8
-  (function() {
+  (function () {
     console.log('%c8)ЯНДЕКС: В МАССИВЕ НАЙТИ СУММУ ЧИСЕЛ РАВНУЮ K', consoleLogStyles);
 
     /*
@@ -656,7 +650,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 9
-  (function() {
+  (function () {
     console.log('%c9)ЯНДЕКС: Объединение отсортированных массивов', consoleLogStyles);
     /*
     # Яндекс №2 Объединение отсортированных массивов
@@ -684,7 +678,7 @@ TODO ЗАДАЧИ:
 
     // ! Данные должны быть Мутабельными
 
-    (function() {
+    (function () {
       const nums1 = [46, 55, 88, 0, 0, 0, 0];
       const nums2 = [18, 29, 80, 90];
 
@@ -702,7 +696,7 @@ TODO ЗАДАЧИ:
     })();
 
     // # Решение №2
-    (function() {
+    (function () {
       const nums1 = [46, 55, 88, 0, 0, 0, 0];
       const nums2 = [18, 29, 80, 90];
 
@@ -725,7 +719,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 10
-  (function() {
+  (function () {
     console.log('%c10)ЯНДЕКС: СЖАТИЕ СТРОКИ', consoleLogStyles);
 
     // * ('AAABbbbBcCCC') => 'A3Bb3BcC3'
@@ -816,7 +810,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 11
-  (function() {
+  (function () {
     console.log('%c11)ЯНДЕКС: СЖАТИЕ ЦЕЛОЧИСЛЕННОГО МАССИВА', consoleLogStyles);
     // Сжатие целочисленного массива
     // ([3, 2, 1, 5, 6, -1, 10]) => "-1,1-3,5-6,10"
@@ -956,7 +950,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 12
-  (function() {
+  (function () {
     console.log('%c12)ЯНДЕКС: ОТСОРТИРОВАТЬ МАССИВ ТОЛЬКО ПО НЕЧЕТНЫМ ЗНАЧЕНИЯМ', consoleLogStyles);
 
     // Отсортировать массив только по нечетным значениям
@@ -975,7 +969,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 13
-  (function() {
+  (function () {
     console.log('%c13)ЯНДЕКС: ФУНКЦИЯ РАНДОМНОГО HEX ЦВЕТА + из RGB в HEX', consoleLogStyles);
 
     // Конвертировать цвет rgb() в HEF и обратно
@@ -984,9 +978,7 @@ TODO ЗАДАЧИ:
 
     // #Вспомогательная функция: Получения из числа шестнадцатеричное представление
     function hex(n) {
-      let str = Number(n)
-        .toString(16)
-        .toUpperCase();
+      let str = Number(n).toString(16).toUpperCase();
       if (str.length < 2) str = '0' + str;
       return str;
     }
@@ -1032,10 +1024,7 @@ TODO ЗАДАЧИ:
     function getRandomHexColor() {
       const MAX_RGA = 255;
       const randomNumber = () => Math.floor(Math.random() * (MAX_RGA + 1));
-      const convertToHex = num =>
-        Number(num)
-          .toString(16)
-          .padStart(2, 0);
+      const convertToHex = num => Number(num).toString(16).padStart(2, 0);
       const randomHex = Array.from({ length: 3 }, () => convertToHex(randomNumber()));
       return '#' + randomHex.join('');
     }
@@ -1053,7 +1042,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 14
-  (function() {
+  (function () {
     console.log('%c14)ЯНДЕКС: ГЕНЕРАЦИЯ РАНДОМНОГО БАННЕРА', consoleLogStyles);
 
     // Массив с баннерами, w (weight) - вес, означает на сколько баннер должен выводиться чаще чем другие
@@ -1106,7 +1095,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 15
-  (function() {
+  (function () {
     console.log('%c15)ЯНДЕКС: ПОСЧИТАТЬ СУММУ В МНОГОМЕРНОМ МАССИВЕ', consoleLogStyles);
 
     const arr = [[1, [1, 2], 2], '6x'];
@@ -1126,7 +1115,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 16
-  (function() {
+  (function () {
     console.log('%c16)ЯНДЕКС: ПРОВЕРКА МАССИВА НА МОНОТОНОСТЬ', consoleLogStyles);
 
     // Проверка массива на монотонность
@@ -1151,7 +1140,7 @@ TODO ЗАДАЧИ:
   });
 
   // ! 17
-  (function() {
+  (function () {
     console.log(
       '%c17)Жадный Алгоритм: Нахождения оптимального заправки от точки А до точки Б',
       consoleLogStyles
@@ -1227,14 +1216,17 @@ TODO ЗАДАЧИ:
       while (tmp.length > 0) {
         // Массив остановок на которые хватит бензина
         const stops = getStops(tmp, capacityCount);
+        console.log('🚀 ~ minStops ~ stops', stops);
         // Остановка на которой следует заправиться
         const lastStop = stops[stops.length - 1];
+        console.log('🚀 ~ minStops ~ lastStop', lastStop);
 
         // Если 0 значит не хвататет capacity для следующей остановки или когда бензина хватает до конца перечисленных остановок
         if (lastStop === 0 || stops.length === tmp.length) return result;
 
         // На сколько еще километров хватит бензина
         capacityCount = lastStop + capacity;
+        console.log('🚀 ~ minStops ~ capacityCount', capacityCount);
         // Сохраняю остановку до которой хватило бензина (самая оптимальная)
         result.push(lastStop);
         // Обрезаю массив, на длину которую уже прошли.
