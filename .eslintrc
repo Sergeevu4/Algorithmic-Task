@@ -8,14 +8,13 @@
     "browser": true
   },
   "extends": [
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier"
   ],
   //"plugin:prettier/recommended",
   // "eslint:recommended",
   "rules": {
-    "prettier/prettier": [
-      "error"
-    ],
+    "prettier/prettier": 0,
     "no-console": 0,
     "space-before-function-paren": [
       "error",
