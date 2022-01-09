@@ -19,6 +19,7 @@ TODO ЗАДАЧИ:
   * 15) Яндекс: Посчитать сумму в многомерном массиве
   * 16) Яндекс: Проверка массива на монотоность
   * 17) Жадный Алгоритм: Нахождения оптимального заправки от точки А до точки Б
+  * 18) Проверить последовательность скобок валидной
 */
 
 (function() {
@@ -1244,5 +1245,78 @@ TODO ЗАДАЧИ:
     };
 
     console.log('Нужно сделать остановку для заправки: ', minStops(roads, 400)); // [ 375, 750, 950, 1300, 1600 ]
+  })();
+
+  // ! 18
+  (function() {
+    console.log('%c18) Проверить последовательность скобок валидной', consoleLogStyles);
+
+    /*
+      По условиям: на вход нам приходит строка, содержащая только символы скобок.
+      Следующие символы скобочек: ( ) { } [ ].
+      Необходимо написать функцию, которая проверит такую строку и вернет в результате true или false —
+      в зависимости от того, является ли данная последовательность скобок валидной или нет.
+  */
+
+    function isValid(str) {
+      let stack = [];
+
+      const brackets = {
+        ')': '(',
+        '}': '{',
+        ']': '[',
+      };
+
+      for (let i = 0; i < str.length; i++) {
+        const current = str[i]; // ?
+        // Cкобка: закрывающая
+        if (isCloseBrackets(current)) {
+          // Необходимо проверить, что для закрывающей скорбки в стеке лежит открывающая скобка
+          // ! в стеке лежит или закрывающая скобка не равна
+          if (brackets[current] !== stack.pop()) return false;
+        } else {
+          // Если открывающаяся
+          stack.push(current);
+        }
+      }
+
+      return stack.length === 0;
+    }
+
+    function isCloseBrackets(character) {
+      return [')', '}', ']'].includes(character);
+    }
+
+    // isValid("()") //=>  true
+    isValid('()[]{}'); //=> true
+    isValid('(]'); //=> false
+    isValid('([)]'); //=> false
+    isValid('{[]}'); //=> rue
+
+    function isValid2(str) {
+      let stack = [];
+
+      const BracketsMap = {
+        '(': ')',
+        '[': ']',
+        '{': '}',
+      };
+
+      for (let i = 0; i < str.length; i++) {
+        const current = str[i];
+
+        if (BracketsMap[current]) {
+          stack.push(current);
+          continue;
+        }
+
+        if (BracketsMap[stack.pop()] !== current) return false;
+      }
+
+      return stack.length === 0;
+    }
+
+    isValid2('[()[{}]{}]'); // ?
+    // isValid2('(]'); // ?
   })();
 })();
