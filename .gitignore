@@ -24,3 +24,5 @@ yarn-error.log*
 
 *.bat
 js/pattern.js
+
+/package-lock.json
