@@ -12,7 +12,7 @@ TODO ЗАДАЧИ:
 	* 8) Перевернуть строку задом на перед
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -25,7 +25,7 @@ TODO ЗАДАЧИ:
   // console.log('%cHello There', consoleLogStyles);
 
   // ! 1
-  (function() {
+  (function () {
     console.log('%c 1) ГЕОМЕТРИЧЕСКАЯ ПРОГРЕССИЯ', consoleLogStyles);
 
     // Стартовое значение, с которого должна начаться последовательность
@@ -66,7 +66,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 2
-  (function() {
+  (function () {
     // Нужно найти самый быстрый способ посчитать сумму чисел от 1 до lastNumber
 
     console.log('%c 2) СУММА ЧИСЕЛ - ПОСЛЕДОВАТЕЛЬНОСТИ', consoleLogStyles);
@@ -74,31 +74,48 @@ TODO ЗАДАЧИ:
     // Число, до которого идёт последовательность || число итераций
     let lastNumber = 15;
 
+    // Задача найти сумму чисел
+    function getSum(lastNum) {
+      // Сумма чисел
+      let sum = 0;
+
+      for (let i = 1; i <= lastNum; i++) {
+        sum += i;
+      }
+
+      return sum;
+    }
+
+    console.log('Сумма чисел', getSum(lastNumber)); //=> 105
+
     /*
       Можно воспользоваться формулой
       Арифметической прогрессии (Гаусс)
       n(n + 1) / 2
     */
-
-    // Сумма чисел
-    let sum = 0;
-
-    // Задача найти сумму чисел
-    function getSum(lastNum) {
-      for (let i = 1; i <= lastNum; i++) {
-        sum += i;
-      }
+    function getSum2(n) {
+      // V
+      return (n * (n + 1)) / 2;
     }
 
-    getSum(lastNumber);
+    getSum2(lastNumber); //=> 105
 
-    console.log('Сумма чисел', sum);
+    // Задача найти от A до Б
+    function getSum3(a, b) {
+      // ! Арифметической прогрессии
+      // return (a + b) * (b - a + 1) / 2
+
+      // 15 + 16 + 17 + 18 + 19 + 20
+      return Array.from({ length: b - a + 1 }, (_, i) => a + i).reduce((acc, n) => (acc += n));
+    }
+
+    getSum3(15, 20); //=> 105
   })();
 
   // _____________________ ПРОИЗВЕДЕНИЕ ЧЕТНЫХ ЧИСЕЛ ____________________________
 
   // ! 3
-  (function() {
+  (function () {
     // Напишите универсальную программу, которая находит произведение всех чётных чисел из последовательности от 1 до n.
 
     console.log('%c 3) ПРОИЗВЕДЕНИЕ ЧЕТНЫХ ЧИСЕЛ - ПОСЛЕДОВАТЕЛЬНОСТИ', consoleLogStyles);
@@ -127,7 +144,7 @@ TODO ЗАДАЧИ:
   // ________________________ ДЕЛИТЕЛЬ ЧИСЛА ______________________________________
 
   // ! 4
-  (function() {
+  (function () {
     // Напишите программу, которая находит все делители числа, кроме единицы и самого числа.
 
     console.log('%c 4) ДЕЛИТЕЛЬ ЧИСЛА, КРОМЕ ЕДИНИЦЫ И САМОГО ЧИСЛА', consoleLogStyles);
@@ -155,7 +172,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 5
-  (function() {
+  (function () {
     console.log('%c 5) КОЛИЧЕСТВО ЦИФР В ЧИСЛЕ', consoleLogStyles);
 
     // Число кторое проверяется
@@ -177,7 +194,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 6
-  (function() {
+  (function () {
     // Программа должна считать количество протеина необходимое на период.
 
     console.log('%c 6) КОЛИЧЕСТВО ПРОТЕИНА НЕОБХОДИМО НА ПЕРИОД', consoleLogStyles);
@@ -216,7 +233,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 7
-  (function() {
+  (function () {
     // Задача Напиши программу, которая проверяет, является ли число палиндромом.
 
     /* Палиндромы — это слова или фразы, которые одинаково читаются слева направо и справа налево.
@@ -241,13 +258,7 @@ TODO ЗАДАЧИ:
     // Решение через строку
     function getPalindromeString(palindrome) {
       return (isPalindrome =
-        parseFloat(
-          String(palindrome)
-            .split('')
-            .reverse()
-            .join(''),
-          10
-        ) === palindrome);
+        parseFloat(String(palindrome).split('').reverse().join(''), 10) === palindrome);
     }
 
     // Решение через через цикл While
@@ -296,13 +307,7 @@ TODO ЗАДАЧИ:
     function isPalindromeFun(str) {
       // Очищаем строку от знаков препинания и продим к нижнему регистру
       const clearStr = s => s.toLowerCase().replace(/[^а-я-a-z-0-9]/gi, '');
-      return (
-        clearStr(str) ===
-        clearStr(str)
-          .split('')
-          .reverse()
-          .join('')
-      );
+      return clearStr(str) === clearStr(str).split('').reverse().join('');
     }
 
     // console.log(isPalindromeFun('Яд, яд, дядя!'));
@@ -340,7 +345,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log('%c 8) ПЕРЕВЕРНУТЬ СТРОКУ', consoleLogStyles);
     // Задача перевернуть строку
 
@@ -371,10 +376,7 @@ TODO ЗАДАЧИ:
 
     // Через Строку Split
     const getTextReversSplit = text => {
-      return text
-        .split('')
-        .reverse()
-        .join(''); // ES5
+      return text.split('').reverse().join(''); // ES5
     };
 
     // Через Оператор Rest
@@ -394,11 +396,23 @@ TODO ЗАДАЧИ:
       return str ? getTextRev(str.substr(1)) + str[0] : str;
     }
 
+    // Циклом без индекса
+    function solution(str) {
+      let results = '';
+
+      for (let letter of str) {
+        results = letter + results;
+      }
+
+      return results;
+    }
+
     console.log(`ПЕРЕВЕРНУТАЯ СТРОКА
 			${getTextReversSplit('первая')}
 			${getTextReverseRest('яавреп')}
 			${getTextReverseReduce('12334')}
 			${getTextRev('РЕКУРСИЯ')}
+			${solution('Без индексов')}
 		`);
   })();
 })();
