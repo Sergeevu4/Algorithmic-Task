@@ -25,6 +25,7 @@
     19. Сортировка пузырьком
     20. Бинарный (Двоичный) поиск
     21. Debounce и Throttling
+    22. Последовательный запуск Promise + Promise.all Polyfill
 
 ## [array-htmlacademy.js](https://github.com/Sergeevu4/Algorithmic-Task/blob/master/js/array-htmlacademy.js)
 

@@ -26,6 +26,8 @@
   * 19) Сортировка пузырьком
   * 20) Бинарный (Двоичный) поиск
   * 21) Debounce и Throttling
+  * 22) Последовательный запуск Promise + Promise.all Polyfill
+
 */
 
 (function () {
@@ -923,4 +925,116 @@
 
     wrapper();
   }
+})();
+
+(function () {
+  // ! Последовательный запуск Promise + Promise.all Polyfill
+
+  const p1 = async () => new Promise(res => setTimeout(res, 100, 'p1'));
+  const p2 = async () => new Promise(res => setTimeout(() => res('p2'), 200));
+  const p3 = async () => new Promise(res => setTimeout(() => res('p3'), 300));
+
+  /** Последовательно запуск асинхронных функций, возврат массива результат и ошибок */
+  const sequentialAsync = (values, callback) =>
+    values.reduce(
+      async (acc, value) => {
+        const resultsObject = await acc;
+
+        try {
+          const result = await callback(value);
+
+          return {
+            ...resultsObject,
+            results: [...resultsObject.results, result],
+          };
+        } catch (error) {
+          return {
+            ...resultsObject,
+            errors: [...resultsObject.errors, error],
+          };
+        }
+      },
+      Promise.resolve({
+        results: [],
+        errors: [],
+      })
+    );
+
+  sequentialAsync([p2(), p1(), p3()], v => v); // ?
+
+  /*
+  Порядок элементов массива в точности соответствует порядку исходных promise.
+  Даже если первый promise будет выполняться дольше всех, его результат всё равно будет первым в массиве.
+*/
+
+  /** Promise.all Polyfill */
+  Promise.myAll = function (promises) {
+    if (promises.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    const results = [];
+    let resolved = 0;
+
+    return new Promise((resolve, reject) => {
+      promises.forEach((promise, index) => {
+        Promise.resolve(promise)
+          .then(result => {
+            results[index] = result;
+            resolved++;
+
+            if (resolved === promises.length) {
+              resolve(results);
+            }
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    });
+  };
+
+  /** Promise.all Polyfill */
+  Promise.myAll2 = function (promises) {
+    if (promises.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    const results = [];
+    let resolved = 0;
+
+    return new Promise((resolve, reject) => {
+      promises.forEach(async (promise, index) => {
+        try {
+          results[index] = await promise;
+
+          resolved++;
+
+          if (resolved === promises.length) {
+            resolve(results);
+          }
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+  };
+
+  Promise.myAll([p3(), p1(), p2(), 'hello']) //=> then [ 'p3', 'p1', 'p2', 'hello' ]
+    .then(value => value)
+    .catch(error => {
+      console.log(error);
+    }); // ?
+
+  Promise.myAll2([p3(), p1(), p2(), 'hello']) //=> then [ 'p3', 'p1', 'p2', 'hello' ]
+    .then(value => value)
+    .catch(error => {
+      console.log(error);
+    }); // ?
+
+  Promise.all([p3(), p1(), p2(), 'hello']) //=> then [ 'p3', 'p1', 'p2', 'hello' ]
+    .then(value => value)
+    .catch(error => {
+      console.log(error);
+    }); // ?
 })();
