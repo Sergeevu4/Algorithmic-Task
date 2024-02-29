@@ -14,7 +14,7 @@ TODO ЗАДАЧИ:
   * 10) ЗАДАЧА №6 ВЕРНУТЬ ПЕРВУЮ САМУЮ ДЛИННУЮ СТРОКУ
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -39,7 +39,7 @@ TODO ЗАДАЧИ:
     Если нет, то строгаем матрёшки дальше
   */
 
-  (function() {
+  (function () {
     console.log('%c 1) СУММА ЧИСЕЛ В МАССИВЕ', consoleLogStyles);
 
     // # Сумма чисел в массиве
@@ -76,7 +76,7 @@ TODO ЗАДАЧИ:
     console.log(sumReduce([1, 2, 3, 4], funcSum, 0));
   })();
 
-  (function() {
+  (function () {
     console.log('%c 2) ФАКТОРИАЛ', consoleLogStyles);
 
     // ! Факториал - произведение всех натуральных чисел от 1 до n включительно
@@ -91,7 +91,7 @@ TODO ЗАДАЧИ:
     console.log(factorial(4));
   })();
 
-  (function() {
+  (function () {
     console.log('%c 3) ЧИСЛА ФИБОНАЧЧИ', consoleLogStyles);
 
     /*
@@ -127,7 +127,7 @@ TODO ЗАДАЧИ:
     console.log(fibonacchi2(7));
   })();
 
-  (function() {
+  (function () {
     console.log('%c 4) АЛГОРИТМ ЕВКЛИДА', consoleLogStyles);
 
     // ! Алгоритм Евклида
@@ -184,7 +184,7 @@ TODO ЗАДАЧИ:
     // console.log( gcd2(30, 18)) // 6
   })();
 
-  (function() {
+  (function () {
     console.log('%c 5) ЗАДАЧА №1 ПРОИЗВЕДЕНИЕ ИХ ВСЕХ', consoleLogStyles);
 
     /*
@@ -202,7 +202,7 @@ TODO ЗАДАЧИ:
     const six = productOfArray([1, 2, 3]); // 6
   })();
 
-  (function() {
+  (function () {
     console.log('%c 6) ЗАДАЧА №2 НАЙТИ ЗНАЧЕНИЕ ВО ВЛОЖЕННОМ ОБЪЕКТЕ', consoleLogStyles);
 
     /*
@@ -244,7 +244,7 @@ TODO ЗАДАЧИ:
     console.log(contains(nestedObject, 'foo')); // false
   })();
 
-  (function() {
+  (function () {
     console.log('%c 7) ЗАДАЧА №3 КОЛИЧЕСТВО ЦЕЛЫХ ЧИСЕЛ В МНОГОМЕРНОМ МАССИВЕ', consoleLogStyles);
 
     /*
@@ -268,7 +268,7 @@ TODO ЗАДАЧИ:
     const totalNumber = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]).length; // 7
   })();
 
-  (function() {
+  (function () {
     console.log('%c 8) ЗАДАЧА №4 СУММА КВАДРАТОВ ЧИСЕЛ В МНОГОМЕРНОМ МАССИВЕ', consoleLogStyles);
     /*
       ! Задача № 4
@@ -294,7 +294,7 @@ TODO ЗАДАЧИ:
     console.log(sumSquares([[[[[[[[[1]]]]]]]]])); // 1
   })();
 
-  (function() {
+  (function () {
     console.log('%c 9) ЗАДАЧА №5 НОВЫЙ МАССИВ ИЗ K ПОВТОРОВ', consoleLogStyles);
 
     /*
@@ -312,7 +312,7 @@ TODO ЗАДАЧИ:
     // console.log(Array(3).fill(5)); //
   })();
 
-  (function() {
+  (function () {
     console.log('%c 10) ЗАДАЧА №6 CODEWARS: ВЕРНУТЬ ПЕРВУЮ САМУЮ ДЛИННУЮ СТРОКУ', consoleLogStyles);
     // Вернуть первую длинную строку,
     // состоящую из k последовательных строк, взятых в массиве

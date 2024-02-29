@@ -34,7 +34,10 @@ TODO ЗАДАЧИ:
   console.log(noPassword(user)); // { id: 312, name: 'Пётр Иванов' }
 
   // ! Динамически удаляет необходимое свойство
-  const removeProperty = prop => ({ [prop]: _, ...rest }) => rest;
+  const removeProperty =
+    prop =>
+    ({ [prop]: _, ...rest }) =>
+      rest;
   // _ - 312
   // prop - id
   // rest { name: 'Пётр Иванов', password: 'Пароль!' }

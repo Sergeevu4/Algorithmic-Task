@@ -13,7 +13,7 @@
 	* 8) Сколько букв в слове
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -26,7 +26,7 @@
   // console.log('%cHello There', consoleLogStyles);
 
   // ! 1
-  (function() {
+  (function () {
     console.log('%c 1) Object.prototype: Проверка является ли массив массивом', consoleLogStyles);
 
     const arrayNumber = [12, 2, 2, 2, 1, 2];
@@ -82,7 +82,7 @@
   })();
 
   // ! 7
-  (function() {
+  (function () {
     console.log(
       '%c 7) Найти количество элементов, у которых конец строки совпадает с искомым значением',
       consoleLogStyles
@@ -102,7 +102,7 @@
     // Решение через includes у строк, если задать просто 4, то указывается с начало длины строку, item.length - 4 (с конца строки)
     const getDocumentsNumbers = (doc, year) => {
       let documentNumber = 0;
-      doc.forEach((item) => {
+      doc.forEach(item => {
         documentNumber += item.includes(year, item.length - 4) ? 1 : 0;
       });
       return documentNumber;
@@ -124,7 +124,7 @@
     // getDocumentsNumbers2(arrayYears, searchYear);
 
     // Интересное решение делением на 01112018 % 10000 = 2018
-    const getDocumentsNumbers3 = function(array, year) {
+    const getDocumentsNumbers3 = function (array, year) {
       let k = 0;
       for (let i = 0; i < array.length; i++) {
         if (array[i] % 10000 === year) k++;
@@ -136,7 +136,7 @@
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log('%c 8) Слово или текст с Заглавной буквы', consoleLogStyles);
 
     /* Задача
@@ -152,7 +152,7 @@
     console.log(capitalize2('hello'));
 
     // Решение через строку 2.
-    const titleCase = (str) => {
+    const titleCase = str => {
       const lower = str.toLowerCase();
       return lower.charAt(0).toUpperCase() + lower.slice(1);
     };
@@ -167,7 +167,7 @@
     console.log(capitalize5('AWESOME'));
 
     // Через строку (Исправить первую и последнею букву)
-    const textСapitalize = (string) => {
+    const textСapitalize = string => {
       return string[0].toUpperCase() + string.slice(1, -1) + string[string.length - 1].toLowerCase();
     };
 
@@ -182,20 +182,14 @@
 
     // Полученные текст сделать с Заглавной буквы, остальные прописные
     const textСapitalize3 = ([firstLetter, ...restLetter]) => {
-      return (
-        firstLetter.toUpperCase() +
-        restLetter
-          .slice(1)
-          .join('')
-          .toLowerCase()
-      );
+      return firstLetter.toUpperCase() + restLetter.slice(1).join('').toLowerCase();
     };
 
     console.log(textСapitalize3('Переданный ТЕКСТ Остальные прописныe'));
   })();
 
   // ! 9
-  (function() {
+  (function () {
     console.log('%c 9) Сколько букв в слове', consoleLogStyles);
     // Задача узнать сколько букв А в слове banana
 
@@ -208,7 +202,7 @@
 
     // Решение через Filter
     const mainStr = 'banana';
-    const letterCounter = [...mainStr].filter((l) => l === 'a').length;
+    const letterCounter = [...mainStr].filter(l => l === 'a').length;
 
     // Решение через Reduce
     function countCharacters(letter, string) {

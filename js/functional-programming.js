@@ -216,9 +216,15 @@ TODO ЗАДАЧИ:
     // # Функция Композиция
     // x - начальное значение (строка)
     // reduceRight - потому что в выше, сначала выполняются функции внутри, то есть с конца, но можно и reduce
-    const compose = (...fns) => x => fns.reduceRight((acc, fn) => fn(acc), x);
+    const compose =
+      (...fns) =>
+      x =>
+        fns.reduceRight((acc, fn) => fn(acc), x);
 
-    const compose2 = (...fns) => arg => fns.reduce((composed, fn) => fn(composed), arg);
+    const compose2 =
+      (...fns) =>
+      arg =>
+        fns.reduce((composed, fn) => fn(composed), arg);
 
     const withСompose = compose(repeat, exclaim, upperCase);
     // withСompose("I love coding") //  I LOVE CODING! I LOVE CODING! I LOVE CODING!
@@ -240,7 +246,10 @@ TODO ЗАДАЧИ:
     const map = fn => xs => xs.map(fn); // fn ~ compose(...fns)
 
     // Композиция
-    const compose = (...fns) => x => fns.reduceRight((acc, fn) => fn(acc), x);
+    const compose =
+      (...fns) =>
+      x =>
+        fns.reduceRight((acc, fn) => fn(acc), x);
 
     // ! Отладчик, функция которая делает побочный эффект и выводит в консоль текущее значение.
     const trace = massage => x => (console.log(massage, x), x);
@@ -441,7 +450,10 @@ TODO ЗАДАЧИ:
       */
 
     // Основная функции для копозиции
-    const compose = (...fns) => args => fns.reduce((composed, fn) => fn(composed), args);
+    const compose =
+      (...fns) =>
+      args =>
+        fns.reduce((composed, fn) => fn(composed), args);
 
     // 1
     const convertToCivilianTime = clockTime => compose(appendAMPM, civilianHours)(clockTime);

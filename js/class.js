@@ -18,7 +18,7 @@ TODO ЗАДАЧИ:
 
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   const consoleLogStyles = [
     'color: green',
@@ -29,7 +29,7 @@ TODO ЗАДАЧИ:
   ].join(';');
 
   // ! 1
-  (function() {
+  (function () {
     console.log('%c 1) CLASS + ARGUMENTS ИЛИ REST', consoleLogStyles);
 
     // * Основной класс
@@ -81,7 +81,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 2
-  (function() {
+  (function () {
     console.log('%c 2) ES6 СОЗДАНИЕ КЛАССА И ПОДКЛАССА', consoleLogStyles);
 
     /*
@@ -182,7 +182,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 3
-  (function() {
+  (function () {
     console.log('%c 3) ES5 СОЗДАНИЕ КЛАССА И ПОДКЛАССА', consoleLogStyles);
 
     /*
@@ -222,13 +222,13 @@ TODO ЗАДАЧИ:
     });
 
     // # Добавления метода в Основной класс в прототип
-    Task.prototype.complete = function() {
+    Task.prototype.complete = function () {
       this._done = true;
     };
 
     // # Добавления статистического метода в Основной класс
     // Так как в js - функции являются объектами, то им можно задать в свойства функцию
-    Task.getDefaultTitle = function() {
+    Task.getDefaultTitle = function () {
       return `Задача`;
     };
 
@@ -265,7 +265,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c 4) ES6 СОЗДАНИЕ STATIC СВОЙСТВ', consoleLogStyles);
     // * Пример создания Static свойств для подсчета создания объектов
     class Person {
@@ -317,7 +317,7 @@ TODO ЗАДАЧИ:
   */
 
   // ! 5
-  (function() {
+  (function () {
     console.log('%c 5) Диаграмма классов: Наследование', consoleLogStyles);
 
     // * Наследование
@@ -365,7 +365,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 6
-  (function() {
+  (function () {
     console.log('%c 6) Диаграмма классов: Композиция (зависимость) - (ЗАМОК)', consoleLogStyles);
 
     // * Композиция - сущности которые жестко зависят друг от друга
@@ -421,7 +421,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 7
-  (function() {
+  (function () {
     console.log('%c 7) Диаграмма классов: Агрегация (связь) - (ПУШКИ)', consoleLogStyles);
 
     // * Агрегация (связь)
@@ -479,7 +479,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     console.log(
       '%c 8) Диаграмма классов: Ассоциация (слабая связь) - (КОМАНДЫ И ПЕРСОНАЖИ)',
       consoleLogStyles
@@ -545,14 +545,14 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 9
-  (function() {
+  (function () {
     console.log('%c 9) Пример работы This со стрелочными функциями', consoleLogStyles);
 
     const test = {
       name: 'test object',
       createAnonFunction() {
         console.log(this.name); //  test object
-        return function() {
+        return function () {
           console.log(this); //  undefined !!!!
           console.log(arguments);
         };
@@ -574,7 +574,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !10
-  (function() {
+  (function () {
     console.log('%c 10) EventEmittet - на прототипах', consoleLogStyles);
 
     /*
@@ -589,7 +589,7 @@ TODO ЗАДАЧИ:
 
     // https://github.com/HowProgrammingWorks/EventEmitter/blob/master/JavaScript/a-prod.js
 
-    const EventEmittet = function() {
+    const EventEmittet = function () {
       /*
         Коллекция (Справочник) событий.
         С самого начала она пустая.
@@ -602,7 +602,7 @@ TODO ЗАДАЧИ:
     };
 
     // Метод для навешивания события
-    EventEmittet.prototype.on = function(name, fn) {
+    EventEmittet.prototype.on = function (name, fn) {
       // Проверяю есть ли EventEmittet внутри коллекции, переданое событие
       const event = this.events[name];
 
@@ -613,7 +613,7 @@ TODO ЗАДАЧИ:
     };
 
     // Метод для отправки событий
-    EventEmittet.prototype.emit = function(name, ...data) {
+    EventEmittet.prototype.emit = function (name, ...data) {
       const event = this.events[name];
       if (event) event.forEach(fn => fn(...data));
     };
@@ -642,7 +642,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !11
-  (function() {
+  (function () {
     console.log('%c 10)  EventEmittet - на замыкании', consoleLogStyles);
 
     // ! EventEmittet - на замыкании
@@ -690,7 +690,7 @@ TODO ЗАДАЧИ:
   })();
 
   // !12
-  (function() {
+  (function () {
     console.log('%c 11) EventEmittet объект + взаимодействие в классах', consoleLogStyles);
 
     // ! EventEmittet объект + взаимодействие в классах

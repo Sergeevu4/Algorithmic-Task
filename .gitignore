@@ -26,3 +26,8 @@ yarn-error.log*
 js/pattern.js
 
 /package-lock.json
+
+.commitlintrc.js
+changelog.config.js
+commitlint.config.js
+

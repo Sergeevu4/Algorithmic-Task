@@ -313,7 +313,6 @@ TODO ЗАДАЧИ:
         // Проверяем если буква равна -, то тогда находим индекс
         // И через метод splice удаляем - и последующую букву, на букву с заглавной
         if (letter === '-') {
-          index;
           arr.splice(index, 2, arr[index + 1].toUpperCase());
         }
       }
@@ -500,8 +499,6 @@ TODO ЗАДАЧИ:
     function anagram(strA, strB) {
       const aCharObj = buildCharObject(strA);
       const bCharObj = buildCharObject(strB);
-
-      console.log(Object.keys(aCharObj));
 
       if (Object.keys(aCharObj).length !== Object.keys(bCharObj).length) {
         return false;

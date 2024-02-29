@@ -1,16 +1,13 @@
 {
   "root": true,
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": "latest"
   },
   "env": {
     "es6": true,
     "browser": true
   },
-  "extends": [
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
+  "extends": ["plugin:prettier/recommended", "prettier"],
   //"plugin:prettier/recommended",
   // "eslint:recommended",
   "rules": {
@@ -18,14 +15,9 @@
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "no-console": 0,
-    "space-before-function-parent": [
-      "error",
-      "never"
-    ]
+    "space-before-function-parent": "off"
     // "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     // "curly": ["error", "multi"]
   },
-  "plugins": [
-    "prettier"
-  ]
+  "plugins": ["prettier"]
 }

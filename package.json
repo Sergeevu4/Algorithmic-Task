@@ -4,22 +4,50 @@
   "description": "",
   "bugs": {},
   "devDependencies": {
-    "eslint": "^8.12.0",
+    "commitizen": "^4.2.5",
+    "commitlint": "^17.0.3",
+    "cz-customizable": "^6.9.1",
+    "cz-git": "^1.3.10",
+    "eslint": "^8.20.0",
     "eslint-config-htmlacademy": "^5.1.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2",
-    "prettier-eslint": "^13.0.0",
-    "stylelint": "^14.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "git-cz": "^4.9.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1",
+    "stylelint": "^14.9.1",
     "stylelint-config-htmlacademy": "^0.1.12"
   },
   "scripts": {
-    "test": "eslint js/"
+    "test": "eslint js/",
+    "commit": "npx cz"
   },
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": "8.11"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git",
+      "czConfig": "./.commitlintrc.js"
+    }
   },
-  "dependencies": {}
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './.commitlintrc.js'"
+    }
+  },
+  "lint-staged": {
+    "js/**/*.js": [
+      "prettier --write",
+      "eslint --fix --color",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ],
+    "**/*.{css,scss}": [
+      "prettier --write",
+      "stylelint --fix"
+    ]
+  }
 }

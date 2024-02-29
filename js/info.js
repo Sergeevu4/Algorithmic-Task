@@ -1,9 +1,6 @@
 'use strict';
 
 /*
-
-
-
   # INFO:
   * 1) Проверка является ли массивом
   * 2) Способ создать массив необходимых длины из значений 0 до N
@@ -27,7 +24,7 @@
   * 20) Бинарный (Двоичный) поиск
   * 21) Debounce и Throttling
   * 22) Последовательный запуск Promise + Promise.all Polyfill
-
+  * 23) Параллельный выполняться асинхронную функцию, но не более 25 одновременно
 */
 
 (function () {
@@ -186,6 +183,29 @@
 
   flattenDeep2(numbers); // [1, 2, 10, 101];
 
+  // # Способ 4 Развернуть массив через структуру данных stack */
+  const flatten = (...stack) => {
+    const result = [];
+
+    while (stack.length) {
+      // Достаем первый элемент
+      const elem = stack.shift();
+
+      if (Array.isArray(elem)) {
+        // Кладем в самое начало массив развернутый массив
+        stack.unshift(...elem);
+        continue;
+      }
+
+      result.push(elem);
+    }
+
+    return result;
+  };
+
+  // flatten(1, [2, 3], 4, 5, [6, [7]]); //=> [ 1, 2, 3, 4, 5, 6, 7 ]
+  // flatten('a', ['b', 2], 3, null, [[4], ['c']]); //=> [ 'a', 'b', 2, 3, null, 4, 'c' ]
+
   // # Если массив двумерный
   let arrTwo = [
     [1, 2, 3],
@@ -333,6 +353,42 @@
     ]
   */
   const transposedMatrix90 = transpose90(transMatrixB);
+
+  // * Через методы массивов (reduceRight)
+  const transpose90ReduceRight = (matrix, value = 90) =>
+    matrix[0].map((_, colIndex) =>
+      matrix.reduceRight((acc, row) => {
+        acc.push(row[colIndex]);
+        return acc;
+      }, [])
+    );
+
+  // * Траспонирование через передачу value -> градусов на сколько необходимо перевернуть
+  const transposeMatrix = (matrix, value = 90) => {
+    const MAP = new Map([
+      [90, 1],
+      [180, 2],
+      [270, 3],
+      [360, 4],
+    ]);
+
+    let results = matrix;
+
+    while (MAP.get(value)) {
+      results = results[0].map((_, colIndex) => {
+        return results.reduceRight((acc, row) => {
+          acc.push(row[colIndex]);
+          return acc;
+        }, []);
+      });
+
+      MAP.set(value, MAP.get(value) - 1);
+    }
+
+    return results;
+  };
+
+  console.log(transposeMatrix(matrix, 90));
 
   // # Поменять элементы матрицы симметрично главной диагонали
 
@@ -570,7 +626,11 @@
   [1, 2, 3, 4].reduce(max);
 
   // #4 Максимальное и Минимальное значение в массиве чисел
-  const compose = (...fns) => (...args) => fns.map(fn => fn(...args));
+  const compose =
+    (...fns) =>
+    (...args) =>
+      fns.map(fn => fn(...args));
+
   const minMax = compose(Math.min, Math.max);
   console.log(minMax(1, 2, 3, 3, 4, 5)); // [ 1, 5 ]
 
@@ -1037,4 +1097,63 @@
     .catch(error => {
       console.log(error);
     }); // ?
+})();
+
+(function () {
+  // !23) Параллельный выполняться асинхронную функцию, но не более 25 одновременно
+
+  /*
+
+      Задача JS:
+
+      - у вас есть список из 1000 элементов
+      - у вас есть асинхронная функция `process(item)`.
+      - необходимо обработать все элементы
+      - обработка должна выполняться параллельно, но не более 25 одновременно
+      - собирать элементы с ошибками
+
+  */
+
+  const chunk = (array, group = 0) => {
+    return array.reduce((acc, item, index) => {
+      if (index % group === 0) {
+        acc.push([item]);
+      } else {
+        acc[acc.length - 1].push(item);
+      }
+
+      return acc;
+    }, []);
+  };
+
+  const chunk2 = (arr, size) => {
+    return arr.reduce((acc, item) => {
+      return Array.isArray(item);
+    }, []);
+  };
+
+  chunk2(arr, 2);
+
+  // chunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2); // ?
+
+  const items = Array.from({ length: 100 }, (_, i) => i + 1);
+
+  const process = async item => {
+    console.log(item);
+  };
+
+  const queued = (list, process, parallel = 1) => {
+    const next = [];
+    return Promise.allSettled(
+      list.map((item, index) => {
+        return new Promise(resolve => {
+          return index < parallel ? process(item) : next.push(resolve);
+        })
+          .then(() => process(item))
+          .finally(() => next.shift()?.());
+      })
+    );
+  };
+
+  queued(items, process, 10);
 })();

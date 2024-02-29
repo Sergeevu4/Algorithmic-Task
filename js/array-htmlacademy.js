@@ -19,7 +19,7 @@ TODO ЗАДАЧИ:
   * 15) Функция удаляющая элементы из массива
 */
 
-(function() {
+(function () {
   // ? Стили для console.log
   let consoleLogStyles = [
     'color: green',
@@ -32,7 +32,7 @@ TODO ЗАДАЧИ:
   // console.log('%cHello There', consoleLogStyles);
 
   // ! 1
-  (function() {
+  (function () {
     // # Найти последний индекс элемента в массиве, числа в переменной number
     // Если числа вообще нет в массиве будет возврат -1
 
@@ -89,7 +89,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 2
-  (function() {
+  (function () {
     // # Напиши программу, которая на основе одного массива c багажом создаст другой.
 
     console.log('%c 2) НА ОСНОВЕ ОДНОГО МАССИВА СОЗДАТЬ ДРУГОЙ (БАГАЖ)', consoleLogStyles);
@@ -122,7 +122,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 3
-  (function() {
+  (function () {
     // # Напиши программу, которая на основе одного массива с книгами создаст другой.
 
     console.log('%c 3) НА ОСНОВЕ ОДНОГО МАССИВА СОЗДАТЬ ДРУГОЙ № 2(КНИГИ)', consoleLogStyles);
@@ -156,7 +156,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 4
-  (function() {
+  (function () {
     console.log('%c 4) «ШИФР ЦЕЗАРЯ»', consoleLogStyles);
 
     // Алфавит
@@ -199,7 +199,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 5
-  (function() {
+  (function () {
     // # Найди все элементы массива с данными, в которых содержится определённая строка.
     // Эта искомая строка записана в переменную query.
 
@@ -252,7 +252,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 6
-  (function() {
+  (function () {
     // # Задача напиши программу, которая считает числа Фибоначчи и последовательно записывает эти числа в массив
 
     console.log('%c 6) ЧИСЛА ФИБОНАЧЧИ', consoleLogStyles);
@@ -319,14 +319,14 @@ TODO ЗАДАЧИ:
     // console.log(fib3(7)) //  [ 0, 1, 1, 2, 3, 5, 8, 13 ]
 
     // # Решения через рекурсию
-    const fibonacchi = n => {
+    const fibonacci = n => {
       if (n === 0) return 0;
 
       if (n === 1) return 1;
-      return fibonacchi(n - 1) + fibonacchi(n - 2);
+      return fibonacci(n - 1) + fibonacci(n - 2);
     };
 
-    fibonacchi(5); // 5
+    fibonacci(5); // 5
     // Последовательность начинается с 0, 1 потом последующие числа складываются.
 
     // # Пример с усовершенствованной рекурсией числа запонимаются в массиве
@@ -339,22 +339,22 @@ TODO ЗАДАЧИ:
 
     let results = [0, 1];
 
-    function fibonacchi2(n) {
+    function fibonacci2(n) {
       if (n === 0) return results[0];
 
       if (n === 1) return results[1];
 
       if (!results[n]) {
-        results[n] = fibonacchi2(n - 2) + fibonacchi2(n - 1);
+        results[n] = fibonacci2(n - 2) + fibonacci2(n - 1);
       }
       return results[n];
     }
 
-    fibonacchi2(5); // 5
+    fibonacci2(5); // 5
     // console.log(results); //  [ 0, 1, 1, 2, 3, 5 ]
 
     // # Решение Формулой Бине
-    const fibonacchi3 = n => {
+    const fibonacci3 = n => {
       const sq5 = Math.sqrt(5); // сохраняем значение корня из 5, чтобы сэкономить ресурсы
 
       const left = (1 + sq5) / 2;
@@ -363,7 +363,7 @@ TODO ЗАДАЧИ:
       return (Math.pow(left, n) - Math.pow(right, n)) / sq5;
     };
 
-    // fibonacchi3(6); // 8
+    // fibonacci3(6); // 8
 
     // # Решение Формулой Бине №2
     /*
@@ -371,16 +371,16 @@ TODO ЗАДАЧИ:
      * где ϕ=(1+√5)/2 – золотое сечение.
      */
 
-    function fibonacchi4(n) {
+    function fibonacci4(n) {
       const phi = (1 + Math.sqrt(5)) / 2;
       // используем Math.round для округления до ближайшего целого
       return Math.round(Math.pow(phi, n) / Math.sqrt(5));
     }
-    // fibonacchi4(6)// 8
+    // fibonacci4(6)// 8
   })();
 
   // ! 7
-  (function() {
+  (function () {
     // # Напиши программу, которая будет следить за моими спортивными показателями.
 
     console.log('%c 7) СПОРТИВНЫЕ ПОКАЗАТЕЛИ', consoleLogStyles);
@@ -432,7 +432,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 8
-  (function() {
+  (function () {
     // # Напишите программу, которая создаёт новый массив уникальных значений (тех, что не повторяются), взятых из исходного массива.
 
     console.log('%c 8) НОВЫЙ МАССИВ УНИКАЛЬНЫХ ЗНАЧЕНИЙ(БЕЗ ПОВТОРЯЮЩИХСЯ ЭЛЕМЕНТОВ)', consoleLogStyles);
@@ -529,7 +529,7 @@ TODO ЗАДАЧИ:
   // __________________________ МАССИВ В ОБРАТНОМ ПОРЯДКЕ____________________________
 
   // ! 9
-  (function() {
+  (function () {
     console.log('%c 8) МАССИВ В ОБРАТНОМ ПОРЯДКЕ)', consoleLogStyles);
 
     // Массив
@@ -565,7 +565,7 @@ TODO ЗАДАЧИ:
   // __________________________ СКОЛЬКО РАЗ ВСТРЕЧАЕТСЯ В МАССИВЕ ЭЛЕМЕНТ ____________________________
 
   // ! 10
-  (function() {
+  (function () {
     console.log('%c 10) СКОЛЬКО РАЗ ВСТРЕЧАЕТСЯ В МАССИВЕ ЭЛЕМЕНТ', consoleLogStyles);
 
     const fruitBasket = [
@@ -592,7 +592,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 11
-  (function() {
+  (function () {
     /* Техническое задание
     Напиши сортировку массива выбором.
     Массив записан в переменную numbers.
@@ -630,7 +630,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 12
-  (function() {
+  (function () {
     console.log(
       '%c 12) НАЙТИ ПЕРЕСЕЧЕНИЯ В МАССИВЕ (ОТФИЛЬТРОВАННЫЙ СПИСОК ЛЮДЕЙ ПО SKILLS)',
       consoleLogStyles
@@ -659,7 +659,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 13
-  (function() {
+  (function () {
     console.log(
       '%c 13) НАЙТИ КОЛИЧЕСТВО ЭЛЕМЕНТОВ МАССИВА, КОТОРЫЕ В СУММЕ НЕ ПРЕВЫШАЮТ LIMIT',
       consoleLogStyles
@@ -695,7 +695,7 @@ TODO ЗАДАЧИ:
     );
 
     // # Решение через Цикл (total = 160)
-    let getDiet2 = function(calories, calorieLimit) {
+    let getDiet2 = function (calories, calorieLimit) {
       let total = 0;
       for (let i = 0; i < calories.length; i++) {
         total += calories[i];
@@ -721,7 +721,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 14
-  (function() {
+  (function () {
     console.log('%c НАЙТИ СОВПАДАЮЩИЕ ЗНАЧЕНИЯ В ДВУХ МАССИВАХ', consoleLogStyles);
 
     let array1 = ['cat', 'sum', 'fun', 'run'];
@@ -733,7 +733,7 @@ TODO ЗАДАЧИ:
   })();
 
   // ! 15
-  (function() {
+  (function () {
     console.log('%c ФУНКЦИЯ УДАЛЯЮЩАЯ ЭЛЕМЕНТЫ ИЗ МАССИВА', consoleLogStyles);
     // ! Функция удаляющая элементы из массива
 
@@ -741,7 +741,7 @@ TODO ЗАДАЧИ:
     function destroyer(array) {
       //  Array.from(arguments).slice(1) - аналог
       let destroyElements = [].slice.call(arguments, 1); // 1 - второй передаваемый элемент
-      return array.filter(function(item) {
+      return array.filter(function (item) {
         return destroyElements.indexOf(item) === -1;
       });
 
